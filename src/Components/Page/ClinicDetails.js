@@ -40,7 +40,7 @@ export default class ClinicDetails extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/appointments/clinic/' + this.state.clinic._id.toString())
+        fetch('https://medicaredemo.herokuapp.com/appointments/clinic/' + this.state.clinic._id.toString())
         .then(res => res.json())
         .then((data) => {
             this.setState({ existedAppointments: data });

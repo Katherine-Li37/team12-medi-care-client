@@ -54,7 +54,7 @@ export default class Register extends Component {
     }
 
     checkIfEmailExists = () => {
-        fetch('http://localhost:3000/users/register/email/' + this.state.email)
+        fetch('https://medicaredemo.herokuapp.com/users/register/email/' + this.state.email)
           .then(res => res.json())
           .then((data) => {
             if (data.length!==0){
@@ -151,7 +151,7 @@ export default class Register extends Component {
     }
 
     checkIfPhoneExists = () => {
-        fetch('http://localhost:3000/users/register/phone/' + this.state.phone)
+        fetch('https://medicaredemo.herokuapp.com/users/register/phone/' + this.state.phone)
           .then(res => res.json())
           .then((data) => {
             if (data.length!==0){
@@ -189,7 +189,7 @@ export default class Register extends Component {
             phone: this.state.phone
           },
           withCredentials: true,
-          url: 'http://localhost:3000/register',
+          url: 'http://localhost:5000/register',
         }).then((res) => {
             if(res.data.message==='User Created'){
                 this.setState({

@@ -49,7 +49,7 @@ export default class AppointmentPage extends Component {
 
 
     async componentDidMount() {
-        fetch('http://localhost:3000/appointments/clinic/' + this.state.clinic._id.toString())
+        fetch('https://medicaredemo.herokuapp.com/appointments/clinic/' + this.state.clinic._id.toString())
         .then(res => res.json())
         .then((data) => {
             this.setState({ existedAppointments: data });
@@ -164,7 +164,7 @@ export default class AppointmentPage extends Component {
             procedure: this.state.serviceSelected,
             status: 'active'
           },
-          url: 'http://localhost:3000/appointments/create',
+          url: 'https://medicaredemo.herokuapp.com/appointments/create',
         }).then((res) => {
             if(res.data){
                 this.setState({

@@ -54,7 +54,7 @@ export default class ProfileDetails extends Component {
             this.fetchUserInformation();  // in case of user updated information
         
             if (this.state.userLoggedIn.type === 'Doctor'){
-                fetch('http://localhost:3000/doctor_details/' + this.state.userLoggedIn._id.toString())
+                fetch('https://medicaredemo.herokuapp.com/doctor_details/' + this.state.userLoggedIn._id.toString())
                 .then(res => res.json())
                 .then((data) => {
                     this.setState({ doctorDetails: data });
@@ -62,7 +62,7 @@ export default class ProfileDetails extends Component {
                 })
                 .catch(console.log)
 
-                fetch('http://localhost:3000/appointments/doctor/' + this.state.userLoggedIn._id.toString())
+                fetch('https://medicaredemo.herokuapp.com/appointments/doctor/' + this.state.userLoggedIn._id.toString())
                 .then(res => res.json())
                 .then((data) => {
                     this.setState({ existedAppointments: data });
@@ -71,7 +71,7 @@ export default class ProfileDetails extends Component {
                 .catch(console.log)
 
             } else if (this.state.userLoggedIn.type === 'Patient'){
-                fetch('http://localhost:3000/appointments/patient/' + this.state.userLoggedIn._id.toString())
+                fetch('https://medicaredemo.herokuapp.com/appointments/patient/' + this.state.userLoggedIn._id.toString())
                 .then(res => res.json())
                 .then((data) => {
                     let pastAppointment = [ ];
@@ -96,7 +96,7 @@ export default class ProfileDetails extends Component {
     }
 
     fetchUserInformation = () =>{
-        fetch('http://localhost:3000/users/' + this.state.userLoggedIn._id.toString())
+        fetch('https://medicaredemo.herokuapp.com/users/' + this.state.userLoggedIn._id.toString())
         .then(res => res.json())
         .then((data) => {
             this.setState({ userLoggedIn: data });
@@ -161,7 +161,7 @@ export default class ProfileDetails extends Component {
                 procedure: appointment.procedure,
                 status: 'inactive'
             },
-            url: 'http://localhost:3000/appointments/update/' + appointment._id,
+            url: 'https://medicaredemo.herokuapp.com/appointments/update/' + appointment._id,
           }).then((res) => {
               if(res.data){
                 //   console.log(res.data)

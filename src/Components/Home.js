@@ -21,7 +21,7 @@ export default class Home extends Component {
         username: null,
         userLoggedIn: null,
 
-        centerLat: 32.985771,
+        centerLat: 32.985772,
         centerLng: -96.750003,
         searchKey: '',
         clinicList: []

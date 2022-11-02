@@ -189,7 +189,7 @@ export default class Register extends Component {
             phone: this.state.phone
           },
           withCredentials: true,
-          url: 'http://localhost:5000/register',
+          url: 'https://medicaredemo.herokuapp.com/users/register',
         }).then((res) => {
             if(res.data.message==='User Created'){
                 this.setState({

@@ -123,14 +123,14 @@ export default class Home extends Component {
                               return (
                                 <div className="card">
                                     <div className="card-body">
-                                        <h5 className="card-title">{clinic.id}: {clinic.name}</h5>
+                                        <h4 className="card-title">{clinic.id}: {clinic.name}</h4>
                                             <p className="mb-0">Distance: {this.computeDistance(clinic.lat, clinic.lng)} miles</p>
                                             <p className="mb-0">Rating: {clinic.rating} / 5</p>
                                         <button type="button"> 
                                             <Link to={{
                                                 pathname: `/Clinic/${clinic._id}`,
                                                 state: { 
-                                                  clinic: clinic,
+                                                  clinicID: clinic._id,
                                                   userLoggedIn: this.state.userLoggedIn
                                                 }
                                             }}>

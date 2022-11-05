@@ -31,7 +31,8 @@ export default class ClinicDetails extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            clinic: this.props.location.state.clinic,
+            clinicID: this.props.location.state.clinicID,
+            clinic:null,
             userLoggedIn: this.props.location.state.userLoggedIn,
             existedAppointments: [],
             displayedAppointments: [],
@@ -39,14 +40,22 @@ export default class ClinicDetails extends Component {
         }       
     }
 
-    componentDidMount() {
-        fetch('https://medicaredemo.herokuapp.com/appointments/clinic/' + this.state.clinic._id.toString())
+    componentWillMount() {
+        fetch('https://medicaredemo.herokuapp.com/clinics/' + this.state.clinicID.toString())
+        .then(res => res.json())
+        .then((data) => {
+            this.setState({ clinic: data });
+        })
+        .catch(console.log)        
+        
+        fetch('https://medicaredemo.herokuapp.com/appointments/clinic/' + this.state.clinicID.toString())
         .then(res => res.json())
         .then((data) => {
             this.setState({ existedAppointments: data });
             this.displayAppointments(data);
         })
         .catch(console.log)
+
     }
 
     createEventId = () => {
@@ -87,79 +96,81 @@ export default class ClinicDetails extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <Banner/>
-                <div className="container new-container">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Information</h5>
-                            <p className="mb-0">Name:  {this.state.clinic.name}</p>
-                            <p className="mb-0">Address:  {this.state.clinic.address}, {this.state.clinic.city},  {this.state.clinic.state} {this.state.clinic.zipcode}</p>
-                            <p className="mb-0">Phone:  {this.state.clinic.phone}</p>
-                            <p className="mb-0">Phone:  {this.state.clinic.email}</p>
-                            <p className="mb-0">Rating:  {this.state.clinic.rating} / 5</p>
+                <React.Fragment>
+                    <Banner/>
+                    {this.state.clinic && <div className="container new-container">
+                        <div className="card">
+                            <div className="card-body">
+                                <h4 className="card-title">Information</h4>
+                                <p className="mb-0">Name:  {this.state.clinic.name}</p>
+                                <p className="mb-0">Address:  {this.state.clinic.address}, {this.state.clinic.city},  {this.state.clinic.state} {this.state.clinic.zipcode}</p>
+                                <p className="mb-0">Phone:  {this.state.clinic.phone}</p>
+                                <p className="mb-0">Phone:  {this.state.clinic.email}</p>
+                                <p className="mb-0">Rating:  {this.state.clinic.rating} / 5</p>
+                            </div>
+                            <div className="card-body">
+                                <h4 className="card-title">Hours</h4>
+                                {this.state.clinic && this.state.clinic.availability && Object.entries(this.state.clinic.availability).map((day) => {
+                                    if (day[1].length > 0){
+                                        return <li key={day[0]}>{day[0]}: {day[1][0]} - {day[1][1]}</li>
+                                    } else{
+                                        return <li key={day[0]}>{day[0]}: Closed</li>
+                                    }
+                                })}   
+                            </div>
                         </div>
-                        <div className="card-body">
-                            <h5 className="card-title">Hours</h5>
-                            {this.state.clinic && this.state.clinic.availability && Object.entries(this.state.clinic.availability).map((day) => {
-                                if (day[1].length > 0){
-                                    return <li key={day[0]}>{day[0]}: {day[1][0]} - {day[1][1]}</li>
-                                } else{
-                                    return <li key={day[0]}>{day[0]}: Closed</li>
+                        <div className="card">
+                            <div className="card-body">
+                                <h4 className="card-title">Appointment Calendar</h4>
+                                {this.state.userLoggedIn && 
+                                    <button type="button"> 
+                                        <Link to={{
+                                                    pathname: '/ScheduleAppointment',
+                                                    state: { 
+                                                        clinic: this.state.clinic,
+                                                        userLoggedIn: this.state.userLoggedIn
+                                                    }
+                                                }}>
+                                                Book Appointment
+                                        </Link>
+                                    </button>
                                 }
-                            })}   
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Appointment Calendar</h5>
-                            {this.state.userLoggedIn && 
-                                <button type="button"> 
-                                    <Link to={{
-                                                pathname: '/ScheduleAppointment',
-                                                state: { 
-                                                    clinic: this.state.clinic,
-                                                    userLoggedIn: this.state.userLoggedIn
-                                                }
-                                            }}>
-                                            Book Appointment
-                                    </Link>
-                                </button>
-                            }
-                            {!this.state.userLoggedIn && 
-                                <button type="button"> 
-                                    <Link className="nav-link" to='/LogIn'>Log In to Book Appointment</Link>
-                                </button>
-                            }
+                                {!this.state.userLoggedIn && 
+                                    <button type="button"> 
+                                        <Link className="nav-link" to='/LogIn'>Log In to Book Appointment</Link>
+                                    </button>
+                                }
 
-                            {this.state.displayedAppointments.length &&
-                                <div className='container new-container'>
-                                    <div className='demo-app'>
-                                        <div className='demo-app-main'>
-                                        <FullCalendar
-                                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                                            headerToolbar={{
-                                            left: 'prev,next today',
-                                            center: 'title',
-                                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                                            }}
-                                            initialView='timeGridWeek'
-                                            editable={false}
-                                            selectable={false}
-                                            selectMirror={false}
-                                            dayMaxEvents={true}
-                                            weekends={this.state.weekendsVisible}
-                                            initialEvents={this.state.displayedAppointments} 
-                                            eventContent={this.renderEventContent} 
-                                        />
+                                {this.state.displayedAppointments.length &&
+                                    <div className='container new-container'>
+                                        <div className='demo-app'>
+                                            <div className='demo-app-main'>
+                                            <FullCalendar
+                                                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                                                headerToolbar={{
+                                                left: 'prev,next today',
+                                                center: 'title',
+                                                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                                                }}
+                                                initialView='timeGridWeek'
+                                                editable={false}
+                                                selectable={false}
+                                                selectMirror={false}
+                                                dayMaxEvents={true}
+                                                weekends={this.state.weekendsVisible}
+                                                initialEvents={this.state.displayedAppointments} 
+                                                eventContent={this.renderEventContent} 
+                                            />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            }
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-            </React.Fragment>
-        )
+    }               
+                </React.Fragment>
+            )
+        }
+ 
     }
-}

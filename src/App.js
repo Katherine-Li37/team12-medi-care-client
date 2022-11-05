@@ -9,7 +9,7 @@ import Home from './Components/Home';
 import LogIn from './Components/Page/LogIn';
 import Register from './Components/Page/Register';
 import AppointmentPage from './Components/Page/AppointmentPage';
-// import ProfileDetails from './Components/Page/ProfileDetails';
+import ProfileDetails from './Components/Page/ProfileDetails';
 import ClinicDetails from './Components/Page/ClinicDetails';
 
 import './App.css';
@@ -24,7 +24,7 @@ function App() {
                 <Home />
             )} />
             <Route path = '/ScheduleAppointment' component = { AppointmentPage }/>
-            {/* <Route path = '/Profile/:id' component = { ProfileDetails }/>  */}
+            <Route path = '/Profile/:id' component = { ProfileDetails }/> 
             <Route path = '/Clinic/:id' component = { ClinicDetails }/> 
             <Route path = '/LogIn' component = { LogIn }/> 
             <Route path = '/Register' component = { Register }/> 

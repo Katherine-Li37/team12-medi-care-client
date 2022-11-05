@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import Banner from '../Header/Banner';
+import { FcCheckmark } from "react-icons/fc";
 // import AdminPanel from './AdminPanel';
 // import DoctorDetail from './DoctorDetail';
 
@@ -217,9 +218,10 @@ export default class ProfileDetails extends Component {
                                         <tr>
                                             <th className="col-sm-1">Date</th>
                                             <th className="col-sm-1">Time</th>
-                                            <th className="col-sm-4">Clinic</th>
+                                            <th className="col-sm-3">Clinic</th>
                                             <th className="col-sm-1">Procedure</th>
                                             <th className="col-sm-3">Actions</th>
+                                            <th className="col-sm-1">Checked In?</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -257,6 +259,9 @@ export default class ProfileDetails extends Component {
                                                             </button> */}
                                                             Check Wait Time / Check-in
                                                         </td> 
+                                                        <td>
+                                                            { appointment.ifCheckedIn && <FcCheckmark />}
+                                                        </td>
                                                     </tr>
                                                 )
                                             })}
@@ -270,7 +275,7 @@ export default class ProfileDetails extends Component {
                                         <tr>
                                             <th className="col-sm-1">Date</th>
                                             <th className="col-sm-1">Time</th>
-                                            <th className="col-sm-4">Clinic</th>
+                                            <th className="col-sm-3">Clinic</th>
                                             <th className="col-sm-1">Procedure</th>
                                             <th className="col-sm-3">Actions</th>
                                         </tr>
@@ -293,7 +298,7 @@ export default class ProfileDetails extends Component {
                                                             </Link>
                                                         </td>
                                                         <td>{ appointment.procedure }</td>
-                                                        <td>Rate / Review</td>
+                                                        <td> Rate / Review</td>
                                                     </tr>
                                                 )
                                             })}

@@ -130,7 +130,7 @@ export default class Home extends Component {
                                             <Link to={{
                                                 pathname: `/Clinic/${clinic._id}`,
                                                 state: { 
-                                                  clinic: clinic,
+                                                  clinicID: clinic._id,
                                                   userLoggedIn: this.state.userLoggedIn
                                                 }
                                             }}>

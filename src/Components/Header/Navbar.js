@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
-
+import navlogo from '../../assets/img/icons/navlogo.svg'
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -67,8 +67,10 @@ export default class Navbar extends Component {
                                 </nav>
                             </div>
                             <div className="col-md-9 col-sm-7  col-6 d-block d-lg-none">
+                                
                                 <nav className="navbar navbar-expand-lg text-right navbar-light mobile-nav">
                                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobilenav">
+                                        <img src={navlogo} alt="navlogo"/>
                                         <span className="fal fa-bars" />
                                     </button>
                                 </nav>

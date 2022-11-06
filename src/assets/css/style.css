@@ -161,7 +161,7 @@ a:active {
 }
 
 .user-form-one {
-    width: 97.5%;
+    width: 50%;
     margin-bottom: 50px;
 }
 
@@ -265,8 +265,7 @@ h1 {
 
 h2 {
     font-size: 36px;
-    line-height: 48px; 
-    color: white;  
+    line-height: 48px;   
     
 }
 
@@ -527,10 +526,11 @@ body.style-two>a {
 }
 
 .map-section {
-    height: 700px;    
+    height: 700px;
+    margin: auto;
     width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 2%;
+    padding-bottom: 1%;
 }
 
 .circle {
@@ -1568,7 +1568,7 @@ button.submit-btn:hover {
 .breadcrumb-wrap,
 .page-banner {
     padding: 0px;
-    padding-top: 18%;
+    padding-top: 25%;
     position: relative;
 }
 
@@ -3231,22 +3231,10 @@ span.line {
     width: 100%;    
     padding-right: 15px;
     padding-left: 15px;
-    padding-top: 10px;
+    padding-top: 1%;
 }
 
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 7px;
-}
 
-.card-title {
-    margin-bottom: 2px;
-}
-
-.mb-0{
-    font-size: 14px;
-}
 
 
 

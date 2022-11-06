@@ -208,7 +208,7 @@ export default class AppointmentPage extends Component {
                                     selected={ this.state.dateSelected }
                                     onChange={ this.dateChange }
                                     name='date'
-                                    dateFormat='mm/dd/yyyy'
+                                    dateFormat='MM/dd/yyyy'
                                     minDate={new Date()}
                                 />
                             </div>

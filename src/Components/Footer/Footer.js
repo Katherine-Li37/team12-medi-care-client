@@ -10,7 +10,7 @@ export class Footer extends Component {
                             <div className="col-sm-6 col-lg-3 offset-lg-1 col-12">
                                 <div className="single-footer-widget">
                                     <div className="f-widget-title">
-                                        <h2>About Us</h2>
+                                        <h2 className="footer-header">About Us</h2>
                                     </div>
                                     <div className="widegts-content">
                                         <p>CS 6326 Team 12

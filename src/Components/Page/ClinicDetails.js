@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import Banner from '../Header/Banner';
+import env from '../../config_env.json';
 // import AdminPanel from './AdminPanel';
 // import DoctorDetail from './DoctorDetail';
 
@@ -41,14 +42,14 @@ export default class ClinicDetails extends Component {
     }
 
     componentWillMount() {
-        fetch('https://medicaredemo.herokuapp.com/clinics/' + this.state.clinicID.toString())
+        fetch(env.api + '/clinics/' + this.state.clinicID.toString())
         .then(res => res.json())
         .then((data) => {
             this.setState({ clinic: data });
         })
         .catch(console.log)        
         
-        fetch('https://medicaredemo.herokuapp.com/appointments/clinic/' + this.state.clinicID.toString())
+        fetch(env.api + '/appointments/clinic/' + this.state.clinicID.toString())
         .then(res => res.json())
         .then((data) => {
             this.setState({ existedAppointments: data });

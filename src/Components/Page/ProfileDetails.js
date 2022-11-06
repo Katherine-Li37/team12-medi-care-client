@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Banner from '../Header/Banner';
 import { FcCheckmark } from "react-icons/fc";
+import env from '../../config_env.json';
 // import AdminPanel from './AdminPanel';
 // import DoctorDetail from './DoctorDetail';
 
@@ -55,7 +56,7 @@ export default class ProfileDetails extends Component {
             // this.fetchUserInformation();  // in case of user updated information
         
             // if (this.state.userLoggedIn.type === 'Doctor'){
-            //     fetch('https://medicaredemo.herokuapp.com/doctor_details/' + this.state.userLoggedIn._id.toString())
+            //     fetch(env.api + '/doctor_details/' + this.state.userLoggedIn._id.toString())
             //     .then(res => res.json())
             //     .then((data) => {
             //         this.setState({ doctorDetails: data });
@@ -63,7 +64,7 @@ export default class ProfileDetails extends Component {
             //     })
             //     .catch(console.log)
 
-            //     fetch('https://medicaredemo.herokuapp.com/appointments/doctor/' + this.state.userLoggedIn._id.toString())
+            //     fetch(env.api + '/appointments/doctor/' + this.state.userLoggedIn._id.toString())
             //     .then(res => res.json())
             //     .then((data) => {
             //         this.setState({ existedAppointments: data });
@@ -72,7 +73,7 @@ export default class ProfileDetails extends Component {
             //     .catch(console.log)
 
             // } else if (this.state.userLoggedIn.type === 'Patient'){
-            fetch('http://localhost:5000/appointments/patient/' + this.state.userLoggedIn._id.toString())
+            fetch(env.api + '/appointments/patient/' + this.state.userLoggedIn._id.toString())
                 .then(res => res.json())
                 .then((data) => {
                     let pastAppointment = [ ];
@@ -106,7 +107,7 @@ export default class ProfileDetails extends Component {
     }
 
     // fetchUserInformation = () =>{
-    //     fetch('https://medicaredemo.herokuapp.com/users/' + this.state.userLoggedIn._id.toString())
+    //     fetch(env.api + '/users/' + this.state.userLoggedIn._id.toString())
     //     .then(res => res.json())
     //     .then((data) => {
     //         this.setState({ userLoggedIn: data });
@@ -171,7 +172,7 @@ export default class ProfileDetails extends Component {
     //             procedure: appointment.procedure,
     //             status: 'inactive'
     //         },
-    //         url: 'https://medicaredemo.herokuapp.com/appointments/update/' + appointment._id,
+    //         url: 'env.api + '/appointments/update/' + appointment._id,
     //       }).then((res) => {
     //           if(res.data){
     //             //   console.log(res.data)
@@ -298,7 +299,17 @@ export default class ProfileDetails extends Component {
                                                             </Link>
                                                         </td>
                                                         <td>{ appointment.procedure }</td>
-                                                        <td> Rate / Review</td>
+                                                        <td> 
+                                                            <Link to={{
+                                                                pathname: `/AppointmentFeedback/${appointment._id}`,
+                                                                state: { 
+                                                                    appointment: appointment,
+                                                                    userLoggedIn: this.state.userLoggedIn
+                                                                }
+                                                            }}>
+                                                                Rate / Review
+                                                            </Link>
+                                                        </td>
                                                     </tr>
                                                 )
                                             })}

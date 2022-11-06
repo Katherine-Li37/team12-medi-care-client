@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Banner from '../Header/Banner';
+import env from '../../config_env.json';
 
 import FullCalendar, { formatDate } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -49,7 +50,7 @@ export default class AppointmentPage extends Component {
 
 
     async componentDidMount() {
-        fetch('https://medicaredemo.herokuapp.com/appointments/clinic/' + this.state.clinic._id.toString())
+        fetch(env.api + '/appointments/clinic/' + this.state.clinic._id.toString())
         .then(res => res.json())
         .then((data) => {
             this.setState({ existedAppointments: data });
@@ -164,7 +165,7 @@ export default class AppointmentPage extends Component {
             procedure: this.state.serviceSelected,
             status: 'active'
           },
-          url: 'https://medicaredemo.herokuapp.com/appointments/create',
+          url: env.api + '/appointments/create',
         }).then((res) => {
             if(res.data){
                 this.setState({
@@ -207,7 +208,7 @@ export default class AppointmentPage extends Component {
                                     selected={ this.state.dateSelected }
                                     onChange={ this.dateChange }
                                     name='date'
-                                    dateFormat='MM/dd/yyyy'
+                                    dateFormat='mm/dd/yyyy'
                                     minDate={new Date()}
                                 />
                             </div>

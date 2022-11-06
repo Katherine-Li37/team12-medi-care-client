@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import GoogleMapReact from "google-map-react";
 import {Link} from 'react-router-dom';
 import Banner from './Header/Banner';
-import mapKey from '../google_key.json';
+import env from '../config_env.json';
 
 const Marker = ({ text, tooltip }) => (
   <div className="circle">
@@ -32,7 +32,7 @@ export default class Home extends Component {
         const user = localStorage.getItem('username');
         if(user && user!=='null'){
             const userID = user.split(',')[1];
-            const response = await fetch('https://medicaredemo.herokuapp.com/users/'+ userID)
+            const response = await fetch(env.api + '/users/'+ userID)
             const data = await response.json();
             this.setState({
                 userID: userID,
@@ -50,7 +50,7 @@ export default class Home extends Component {
 
     search = () => {
       if (this.state.searchKey.toLowerCase() === "75080" || this.state.searchKey.toLowerCase() === "richardson"){
-        fetch('https://medicaredemo.herokuapp.com/clinics')
+        fetch(env.api + '/clinics')
           .then(res => res.json())
           .then((data) => {
               const clinics = [];
@@ -87,7 +87,7 @@ export default class Home extends Component {
     }
     
     render() {
-      const googleMapKey = mapKey.key;
+      const googleMapKey = env.google_map_key;
 
       return (
             <React.Fragment>

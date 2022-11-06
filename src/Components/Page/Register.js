@@ -3,6 +3,7 @@ import Axios from 'axios';
 import validator from 'validator';
 import {Link} from 'react-router-dom';
 import Banner from '../Header/Banner';
+import env from '../../config_env.json';
 
 export default class Register extends Component {
     constructor(props) {
@@ -54,7 +55,7 @@ export default class Register extends Component {
     }
 
     checkIfEmailExists = () => {
-        fetch('https://medicaredemo.herokuapp.com/users/register/email/' + this.state.email)
+        fetch(env.api + '/users/register/email/' + this.state.email)
           .then(res => res.json())
           .then((data) => {
             if (data.length!==0){
@@ -151,7 +152,7 @@ export default class Register extends Component {
     }
 
     checkIfPhoneExists = () => {
-        fetch('https://medicaredemo.herokuapp.com/users/register/phone/' + this.state.phone)
+        fetch(env.api + '/users/register/phone/' + this.state.phone)
           .then(res => res.json())
           .then((data) => {
             if (data.length!==0){
@@ -189,7 +190,7 @@ export default class Register extends Component {
             phone: this.state.phone
           },
           withCredentials: true,
-          url: 'https://medicaredemo.herokuapp.com/register',
+          url: env.api + '/register',
         }).then((res) => {
             if(res.data.message==='User Created'){
                 this.setState({

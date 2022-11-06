@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
-
+import env from '../../config_env.json';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ export default class Navbar extends Component {
         const user = localStorage.getItem('username');
         if(user && user!=='null'){
             const userID = user.split(',')[1];
-            const response = await fetch('https://medicaredemo.herokuapp.com/users/'+ userID)
+            const response = await fetch(env.api + '/users/'+ userID)
             const data = await response.json();
             this.setState({
                 userID: userID,

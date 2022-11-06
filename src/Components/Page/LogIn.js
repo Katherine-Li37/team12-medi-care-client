@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
 import Banner from '../Header/Banner';
+import env from '../../config_env.json';
 
 export default class LogIn extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ export default class LogIn extends Component {
             password: this.state.loginPassword,
           },
           withCredentials: true,
-          url: 'https://medicaredemo.herokuapp.com/login',
+          url: env.api + '/login',
         }).then((res) => {
             if(res.data.success){
                 localStorage.setItem('token', res.data.token);

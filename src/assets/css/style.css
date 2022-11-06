@@ -161,7 +161,7 @@ a:active {
 }
 
 .user-form-one {
-    width: 50%;
+    width: 97.5%;
     margin-bottom: 50px;
 }
 
@@ -266,6 +266,7 @@ h1 {
 h2 {
     font-size: 36px;
     line-height: 48px;
+    color: white;  
 }
 
 h3 {
@@ -521,12 +522,13 @@ body.style-two>a {
 }
 
 .map-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
 }
 
 .map-section {
-    height: 800px;
-    margin: auto;
+    height: 700px;    
     width: 100%;
 }
 
@@ -1564,8 +1566,8 @@ button.submit-btn:hover {
 
 .breadcrumb-wrap,
 .page-banner {
-    padding: 30px;
-    padding-top: 160px;
+    padding-top: 100px;
+    padding-bottom: 100px;
     position: relative;
 }
 
@@ -1654,7 +1656,7 @@ button.submit-btn:hover {
 }
 
 .user-form-wrapper {
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .user-form-wrapper .container {
@@ -1675,14 +1677,14 @@ button.submit-btn:hover {
 .user-form-wrapper input,
 .user-form-wrapper textarea {
     width: 100%;
-    height: 71px;
+    height: 60px;
     background: #fff;
     -webkit-box-shadow: 0px 6px 26px rgba(0, 0, 0, 0.06);
     box-shadow: 0px 6px 26px rgba(0, 0, 0, 0.06);
     border: none;
-    padding-left: 30px;
+    padding-left: 20px;
     /* text-transform: capitalize; */
-    margin-bottom: 29px;
+    margin-bottom: 2px;
     color: #666666;
 }
 
@@ -3221,4 +3223,26 @@ span.line {
 
 .delete-modal-button {
     margin: 30px 70px;
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: relative;
+    width: 100%;    
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 7px;
+}
+
+.card-title {
+    margin-bottom: 2px;
+}
+
+.mb-0{
+    font-size: 14px;
 }

@@ -299,13 +299,13 @@
         padding-bottom: 90px;
     }
     .single-footer-widget {
-        margin-top: 40px;
+        margin-top: 2%;
     }
     .footer-copyright-wrapper {
         padding: 15px 0px;
     }
     .f-widget-title {
-        margin-bottom: 20px;
+        margin-bottom: 2%;
     }
     .header-two .mean-container .mean-bar {
         min-height: 0px;
@@ -357,7 +357,7 @@
     }
     .breadcrumb-wrap,
     .page-banner {
-        padding-left: 0px;
+        padding-bottom: 20%;
     }
     .single-blog-card .card-content {
         padding: 30px;
@@ -463,8 +463,8 @@
         text-align: center;
     }
     .footer-widgets-wrapper {
-        padding-top: 40px;
-        padding-bottom: 70px;
+        padding-top: 1%;
+        padding-bottom: 1%;
     }
     .theme-btn.mr-lg-3 {
         margin-right: 15px;

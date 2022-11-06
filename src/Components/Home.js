@@ -123,7 +123,7 @@ export default class Home extends Component {
                               return (
                                 <div className="card">
                                     <div className="card-body">
-                                        <h4 className="card-title">{clinic.id}: {clinic.name}</h4>
+                                        <h6 className="card-title">{clinic.id}: {clinic.name}</h6>
                                             <p className="mb-0">Distance: {this.computeDistance(clinic.lat, clinic.lng)} miles</p>
                                             <p className="mb-0">Rating: {clinic.rating} / 5</p>
                                         <button type="button"> 

@@ -200,7 +200,7 @@ export default class AppointmentPage extends Component {
                 <Banner/>
                 <div className='contact-form-wraper'>
                     <div className='container new-container'>
-                        <h2>Schedule an Appointment at {this.state.clinic.name}</h2>
+                        <h3>Schedule an Appointment at {this.state.clinic.name}</h3>
                         <div>
                             <div className='col-lg-6 col-md-6 col-12 date-field'>
                                 <label>Date: </label>

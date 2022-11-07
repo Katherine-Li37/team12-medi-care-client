@@ -53,21 +53,38 @@ export default class Navbar extends Component {
                                 <nav id="responsive-menu" className="menu-style-one">
                                     <ul className="menu-items">
                                         <li><Link to='/'>Home</Link></li>
-                                        {!this.state.username && <li><Link to='/LogIn'>Sign up/ Log in</Link></li>}
-                                        {this.state.username && 
-                                            <li><Link to={{
-                                                pathname: `/Profile/${this.state.userID}`,
-                                                state: { userLoggedIn: this.state.userLoggedIn }
-                                            }}>{this.state.username}
-                                            </Link></li>
+                                        {!this.state.username &&
+                                            <li className="nav-item">
+                                                <Link className="nav-link" to='/LogIn'>Sign up/ Log in</Link>
+                                            </li>
+                                        }
+                                        {this.state.username && this.state.username !=="Admin" &&
+                                            <li className="nav-item">
+                                                <Link className="nav-link" to={{
+                                                    pathname: `/Profile/${this.state.userID}`,
+                                                    state: { userLoggedIn: this.state.userLoggedIn }
+                                                }}>
+                                                    {this.state.username}
+                                                </Link>
+                                            </li>
+                                        }
+                                        {this.state.username && this.state.username ==="Admin" && 
+                                            <li className="nav-item">
+                                                <Link className="nav-link" to={{
+                                                    pathname: `/AdminPanel`,
+                                                    state: { userLoggedIn: this.state.userLoggedIn }
+                                                }}>
+                                                    {this.state.username}
+                                                </Link>
+                                            </li>
                                         }
                                         {this.state.username && 
-                                            <li onClick={this.signOut}><Link to='/'>Sign out</Link></li>
+                                            <li className="nav-item" onClick={this.signOut}><Link className="nav-link" to='/'>Sign out</Link></li>
                                         }
                                     </ul>
                                 </nav>
                             </div>
-                            <div className="col-md-9 col-sm-7  col-6 d-block d-lg-none">
+                            <div className="col-md-9 col-sm-7 col-6 d-block d-lg-none">
                                 <nav className="navbar navbar-expand-lg text-right navbar-light mobile-nav">
                                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobilenav">
                                         <img src={navlogo} alt="navlogo"/>
@@ -85,10 +102,20 @@ export default class Navbar extends Component {
                                             <Link className="nav-link" to='/LogIn'>Sign up/ Log in</Link>
                                         </li>
                                     }
-                                    {this.state.username && 
+                                    {this.state.username && this.state.username !=="Admin" &&
                                         <li className="nav-item">
                                             <Link className="nav-link" to={{
                                                 pathname: `/Profile/${this.state.userID}`,
+                                                state: { userLoggedIn: this.state.userLoggedIn }
+                                            }}>
+                                                {this.state.username}
+                                            </Link>
+                                        </li>
+                                    }
+                                    {this.state.username && this.state.username ==="Admin" && 
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to={{
+                                                pathname: `/AdminPanel`,
                                                 state: { userLoggedIn: this.state.userLoggedIn }
                                             }}>
                                                 {this.state.username}

@@ -121,7 +121,15 @@ export default class ProfileDetails extends Component {
                                                         </td>
                                                         <td>{ appointment.procedure }</td>
                                                         <td> 
-                                                            Check Wait Time / Check-in
+                                                        <Link to={{
+                                                                pathname: `/AppointmentWaitTime/${appointment._id}`,
+                                                                state: { 
+                                                                    appointment: appointment,
+                                                                    userLoggedIn: this.state.userLoggedIn
+                                                                }
+                                                            }}>
+                                                                Check Wait Time / Check-in
+                                                            </Link>
                                                         </td> 
                                                         <td>
                                                             { appointment.ifCheckedIn && <FcCheckmark />}

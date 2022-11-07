@@ -13,7 +13,7 @@ import ProfileDetails from './Components/Page/ProfileDetails';
 import ClinicDetails from './Components/Page/ClinicDetails';
 import FeedbackDetails from './Components/Page/FeedbackDetails';
 import AdminPanel from './Components/Page/AdminPanel';
-
+import WaitTimeDetails from './Components/Page/WaitTimeDetails';
 
 import './App.css';
 
@@ -28,6 +28,7 @@ function App() {
             )} />
             <Route path = '/ScheduleAppointment' component = { AppointmentPage }/>
             <Route path = '/Profile/:id' component = { ProfileDetails }/> 
+            <Route path = '/AppointmentWaitTime/:id' component = { WaitTimeDetails }/> 
             <Route path = '/AdminPanel' component = { AdminPanel }/> 
             <Route path = '/Clinic/:id' component = { ClinicDetails }/> 
             <Route path = '/AppointmentFeedback/:id' component = { FeedbackDetails }/>

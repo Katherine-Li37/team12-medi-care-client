@@ -152,6 +152,7 @@ export default class ProfileDetails extends Component {
                                             <th className="col-sm-3">Clinic</th>
                                             <th className="col-sm-1">Procedure</th>
                                             <th className="col-sm-3">Actions</th>
+                                            <th className="col-sm-1">Rated?</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -173,15 +174,20 @@ export default class ProfileDetails extends Component {
                                                         </td>
                                                         <td>{ appointment.procedure }</td>
                                                         <td> 
-                                                            <Link to={{
-                                                                pathname: `/AppointmentFeedback/${appointment._id}`,
-                                                                state: { 
-                                                                    appointment: appointment,
-                                                                    userLoggedIn: this.state.userLoggedIn
-                                                                }
-                                                            }}>
-                                                                Rate / Review
-                                                            </Link>
+                                                            {appointment.ifRated!==true && 
+                                                                <Link to={{
+                                                                    pathname: `/AppointmentFeedback/${appointment._id}`,
+                                                                    state: { 
+                                                                        appointment: appointment,
+                                                                        userLoggedIn: this.state.userLoggedIn
+                                                                    }
+                                                                }}>
+                                                                    Rate / Review
+                                                                </Link>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            { appointment.ifRated && <FcCheckmark />}
                                                         </td>
                                                     </tr>
                                                 )

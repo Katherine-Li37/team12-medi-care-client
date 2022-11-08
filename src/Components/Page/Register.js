@@ -22,7 +22,7 @@ export default class Register extends Component {
             firstName: '',
             lastName: '',
             phone: '',
-            ifPhoneFormat: true,
+            // ifPhoneFormat: true,
             ifPhoneExist: false,
 
             buttonEnabled: false,
@@ -136,20 +136,20 @@ export default class Register extends Component {
             phone: event.target.value,
             typing: false,
             typingTimeout: setTimeout(() => {
-                this.checkIfPhoneFormat();
+                // this.checkIfPhoneFormat();
                 this.checkIfPhoneExists();
             }, 1000)
          });
     }
     
-    checkIfPhoneFormat =()=>{
-        if (validator.isMobilePhone(this.state.phone)) {
-            this.setState({ifPhoneFormat:true});
-          } else {
-            this.setState({ifPhoneFormat:false});
-          }
-        this.checkIfEnableButton();
-    }
+    // checkIfPhoneFormat =()=>{
+    //     if (validator.isMobilePhone(this.state.phone.toString(), 'en-US')) {
+    //         this.setState({ifPhoneFormat:true});
+    //       } else {
+    //         this.setState({ifPhoneFormat:false});
+    //       }
+    //     this.checkIfEnableButton();
+    // }
 
     checkIfPhoneExists = () => {
         fetch(env.api + '/users/register/phone/' + this.state.phone)
@@ -171,7 +171,7 @@ export default class Register extends Component {
             && this.state.password.length && this.state.ifStrongPassword
             && this.state.repeatPassword.length && this.state.ifPasswordMatch
             && this.state.firstName.length && this.state.lastName.length
-            && this.state.phone.length && this.state.ifPhoneFormat && !this.state.ifPhoneExist 
+            && this.state.phone.length && !this.state.ifPhoneExist 
             )){
             this.setState({buttonEnabled: true});
         } else{
@@ -238,7 +238,6 @@ export default class Register extends Component {
                                 <input placeholder="Phone Number" onChange={this.setPhone}/>
                             </div>  
                             {this.state.ifPhoneExist && <span className="error-msg">Phone number exists</span>}  
-                            {!this.state.ifPhoneFormat && <span className="error-msg">Not valid phone number, please enter digits only.</span>}
 
                             <div>
                                 {this.state.buttonEnabled &&

@@ -135,7 +135,9 @@ export default class AdminPanel extends Component {
 
     clinicChange =(clinic)=>{
         this.setState({
-            clinicSelected: clinic
+            clinicSelected: clinic,
+            existedAppointments: [],
+            displayedAppointments: []
         });
         this.getWorkHours(clinic);
         this.getAppointments(clinic);
@@ -180,17 +182,17 @@ export default class AdminPanel extends Component {
     }
 
     filterOutExistedAppointment = (date, timeSlotArray) => {
-        let existedAppointmentTime = [];
-        this.state.existedAppointments.forEach((appointment)=>{
-            if(date.getTime() === new Date(appointment.date).getTime()){
-                existedAppointmentTime.push(appointment.time);
-            }
-        })
-        const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
-
+        // let existedAppointmentTime = [];
+        // this.state.existedAppointments.forEach((appointment)=>{
+        //     if(date.getTime() === new Date(appointment.date).getTime()){
+        //         existedAppointmentTime.push(appointment.time);
+        //     }
+        // })
+        // const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
+        const filteredArray = timeSlotArray;
         this.setState({
             availableTimeList: filteredArray,
-            timeSelected: timeSlotArray[0]
+            timeSelected: filteredArray[0]
         })
         this.checkIfEnableButton();
     }

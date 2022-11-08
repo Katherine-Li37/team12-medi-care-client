@@ -68,10 +68,10 @@ export default class Home extends Component {
 
     computeDistance = (lat, lng) => {
         // The math module contains a function named toRadians which converts from degrees to radians.
-        var lon1 = this.state.centerLng * Math.PI / 180;
-        var lon2 = lng * Math.PI / 180;
-        var lat1 = this.state.centerLat * Math.PI / 180;
-        var lat2 = lat * Math.PI / 180;
+        let lon1 = this.state.centerLng * Math.PI / 180;
+        let lon2 = lng * Math.PI / 180;
+        let lat1 = this.state.centerLat * Math.PI / 180;
+        let lat2 = lat * Math.PI / 180;
    
         // Haversine formula
         let dlon = lon2 - lon1;

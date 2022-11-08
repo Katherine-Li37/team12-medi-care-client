@@ -47,6 +47,29 @@ export default class FeedbackDetails extends Component {
                 })
             } 
         });
+
+        Axios({
+            method: 'POST',
+            data: {
+              clinicID: this.state.appointment.clinicID,
+              clinicName: this.state.appointment.clinicName,
+              patientID: this.state.appointment.patientID,
+              patientName: this.state.appointment.patientName,
+              date: this.state.appointment.date,
+              time: this.state.appointment.time,
+              procedure: this.state.appointment.procedure,
+              status: this.state.appointment.status,
+              ifCheckedIn: this.state.appointment.ifCheckedIn,
+              ifRated: true
+            },
+            url: env.api + '/appointments/update/' + this.state.appointment._id
+          }).then((res) => {
+              if(res.data.success){
+                  this.setState({
+                      checkInSuccess: true
+                  })
+              } 
+          });
     };
 
     render() {

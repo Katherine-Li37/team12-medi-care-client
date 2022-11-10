@@ -516,12 +516,15 @@ body.style-two>a {
 
 .main-menu .container,
 .new-container {
+    /* margin: auto; */
+    /* display: inline-block; */
+    margin: auto;
     background: #fff;
     border-radius: 10px;
     -webkit-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
-    padding: 0px 30px;
+    /* padding: 0px 30px; */
 }
 
 .map-container {
@@ -1673,9 +1676,9 @@ button.submit-btn:hover {
     margin-top: 20px;
 }
 
-.new-container {
-    margin: 60px 0;
-}
+/* .new-container { */
+    /* margin: 60px 0; */
+/* } */
 
 .user-form-wrapper input,
 .user-form-wrapper textarea {
@@ -3228,7 +3231,7 @@ span.line {
     margin: 30px 70px;
 }
 
-.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-19, .col-sm-20, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
     position: relative;
     width: 100%;    
     padding-right: 15px;
@@ -3237,6 +3240,7 @@ span.line {
 }
 
 .card-body {
+    /* display: inline-block; */
     flex: 1 1 auto;
     min-height: 1px;
     padding: 7px;
@@ -3244,6 +3248,48 @@ span.line {
 
 .card-title {
     margin-bottom: 2px;
+}
+
+@media screen and (max-width: 800px) {
+    .col-sm-1{
+        display: none;
+    }
+    .col-sm-3{
+        display: none;
+    }
+    .col-sm-20{
+        display: none;
+    }
+    td{
+        display: block;
+    }
+    td:nth-child(1)::before{
+        content: "Date: ";
+    }
+    td:nth-child(2)::before{
+        content: "Time: ";
+    }
+    td:nth-child(3)::before{
+        content: "Clinic: ";
+    }
+    td:nth-child(4)::before{
+        content: "Procedure: ";
+    }
+    td:nth-child(5)::before{
+        content: "Actions: ";
+    }
+    .com-sm-22::before{
+        content: "Checked in: ";
+    }
+    .com-sm-21::before{
+        content: "Rated: ";
+    }
+    /* td:nth-child(6)::before{
+        content: "Checked in?";
+    } */
+    /* .col-sm-20::before{
+        content: "Checked In?";
+    } */
 }
 
 .mb-0{

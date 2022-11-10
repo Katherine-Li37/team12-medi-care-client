@@ -99,7 +99,7 @@ export default class ProfileDetails extends Component {
                                             <th className="col-sm-3">Clinic</th>
                                             <th className="col-sm-1">Procedure</th>
                                             <th className="col-sm-3">Actions</th>
-                                            <th className="col-sm-1">Checked In?</th>
+                                            <th className="col-sm-20">Checked In?</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -131,7 +131,7 @@ export default class ProfileDetails extends Component {
                                                                 Check Wait Time / Check-in
                                                             </Link>
                                                         </td> 
-                                                        <td>
+                                                        <td className='com-sm-22'>
                                                             { appointment.ifCheckedIn && <FcCheckmark />}
                                                         </td>
                                                     </tr>
@@ -152,7 +152,7 @@ export default class ProfileDetails extends Component {
                                             <th className="col-sm-3">Clinic</th>
                                             <th className="col-sm-1">Procedure</th>
                                             <th className="col-sm-3">Actions</th>
-                                            <th className="col-sm-1">Rated?</th>
+                                            <th className="col-sm-19">Rated?</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -186,7 +186,7 @@ export default class ProfileDetails extends Component {
                                                                 </Link>
                                                             }
                                                         </td>
-                                                        <td>
+                                                        <td className='com-sm-21'>
                                                             { appointment.ifRated && <FcCheckmark />}
                                                         </td>
                                                     </tr>

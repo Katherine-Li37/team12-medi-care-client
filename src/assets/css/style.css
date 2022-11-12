@@ -1678,9 +1678,9 @@ button.submit-btn:hover {
     margin-top: 40px;
 }
 
-/* .new-container { */
-    /* margin: 60px 0; */
-/* } */
+.new-container {
+    margin: 20px 0;
+}
 
 .user-form-wrapper input,
 .user-form-wrapper textarea {
@@ -3250,7 +3250,25 @@ span.line {
 
 .card-title {
     margin-bottom: 2px;
+    padding-left: 30px;
 }
+@media screen and (max-width: 1024px) {
+    .card-title
+     {
+        padding-left: 18px;
+    }
+  }
+.book-button
+{
+    padding-left: 30px;
+}
+@media screen and (max-width: 1024px) {
+    .book-button
+     {
+        padding-left: 18px;
+    }
+  }
+
 
 @media screen and (max-width: 800px) {
     .col-sm-1{

@@ -1674,7 +1674,7 @@ button.submit-btn:hover {
 }
 
 .new-container {
-    margin: 60px 0;
+    margin: 20px 0;
 }
 
 .user-form-wrapper input,
@@ -3244,7 +3244,25 @@ span.line {
 
 .card-title {
     margin-bottom: 2px;
+    padding-left: 30px;
 }
+@media screen and (max-width: 1024px) {
+    .card-title
+     {
+        padding-left: 18px;
+    }
+  }
+.book-button
+{
+    padding-left: 30px;
+}
+@media screen and (max-width: 1024px) {
+    .book-button
+     {
+        padding-left: 18px;
+    }
+  }
+
 
 .mb-0{
     font-size: 14px;

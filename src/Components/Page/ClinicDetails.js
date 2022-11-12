@@ -123,6 +123,7 @@ export default class ClinicDetails extends Component {
                         <div className="card">
                             <div className="card-body">
                                 <h4 className="card-title">Appointment Calendar</h4>
+                                <div className="book-button"> 
                                 {this.state.userLoggedIn && 
                                     <button type="button"> 
                                         <Link to={{
@@ -136,6 +137,7 @@ export default class ClinicDetails extends Component {
                                         </Link>
                                     </button>
                                 }
+                                </div>
                                 {!this.state.userLoggedIn && 
                                     <button type="button"> 
                                         <Link className="nav-link" to='/LogIn'>Log In to Book Appointment</Link>

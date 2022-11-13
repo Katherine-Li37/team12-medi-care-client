@@ -1679,7 +1679,8 @@ button.submit-btn:hover {
 }
 
 .new-container {
-    margin: 60px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .user-form-wrapper input,
@@ -3254,4 +3255,62 @@ span.line {
 
 .mb-0{
     font-size: 14px;
+}
+@media screen and (max-width: 479px) { 
+    .fc .fc-toolbar.fc-header-toolbar { 
+      display: grid !important; 
+    }
+  } 
+
+  .fc .fc-col-header-cell-cushion { 
+    font-size: 10px; 
+  } 
+
+  .fc { 
+  height:750px; 
+  } 
+
+  @media screen and (max-width: 800px) {
+    .col-sm-1{
+        display: none;
+    }
+    .col-sm-3{
+        display: none;
+    }
+    .col-sm-20{
+        display: none;
+    }
+    td{
+        display: block;
+    }
+    td:nth-child(1){
+        background-color: lightgray;
+    }
+    td:nth-child(1)::before{
+        content: "Date: ";
+    }
+    td:nth-child(2)::before{
+        content: "Time: ";
+    }
+    td:nth-child(3)::before{
+        content: "Clinic: ";
+    }
+    td:nth-child(4)::before{
+        content: "Procedure: ";
+    }
+    td:nth-child(5)::before{
+        content: "Actions: ";
+    }
+    .com-sm-22::before{
+        content: "Checked in?: ";
+    }
+    .com-sm-21::before{
+        content: "Rated?: ";
+    }
+    /* td:nth-child(6)::before{
+        content: "Checked in?";
+    } */
+    /* .col-sm-20::before{
+        content: "Checked In?";
+    } */
 }

@@ -106,7 +106,7 @@ export default class ClinicDetails extends Component {
                                 <p className="mb-0">Name:  {this.state.clinic.name}</p>
                                 <p className="mb-0">Address:  {this.state.clinic.address}, {this.state.clinic.city},  {this.state.clinic.state} {this.state.clinic.zipcode}</p>
                                 <p className="mb-0">Phone:  {this.state.clinic.phone}</p>
-                                <p className="mb-0">Phone:  {this.state.clinic.email}</p>
+                                <p className="mb-0">Email:  {this.state.clinic.email}</p>
                                 <p className="mb-0">Rating:  {this.state.clinic.rating} / 5</p>
                             </div>
                             <div className="card-body">

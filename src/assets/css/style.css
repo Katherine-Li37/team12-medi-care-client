@@ -1679,7 +1679,7 @@ button.submit-btn:hover {
 }
 
 .new-container {
-    margin: 20px 0;
+    margin: 60px 0;
 }
 
 .user-form-wrapper input,
@@ -3250,66 +3250,6 @@ span.line {
 
 .card-title {
     margin-bottom: 2px;
-    padding-left: 30px;
-}
-@media screen and (max-width: 1024px) {
-    .card-title
-     {
-        padding-left: 18px;
-    }
-  }
-.book-button
-{
-    padding-left: 30px;
-}
-@media screen and (max-width: 1024px) {
-    .book-button
-     {
-        padding-left: 18px;
-    }
-  }
-
-
-@media screen and (max-width: 800px) {
-    .col-sm-1{
-        display: none;
-    }
-    .col-sm-3{
-        display: none;
-    }
-    .col-sm-20{
-        display: none;
-    }
-    td{
-        display: block;
-    }
-    td:nth-child(1)::before{
-        content: "Date: ";
-    }
-    td:nth-child(2)::before{
-        content: "Time: ";
-    }
-    td:nth-child(3)::before{
-        content: "Clinic: ";
-    }
-    td:nth-child(4)::before{
-        content: "Procedure: ";
-    }
-    td:nth-child(5)::before{
-        content: "Actions: ";
-    }
-    .com-sm-22::before{
-        content: "Checked in: ";
-    }
-    .com-sm-21::before{
-        content: "Rated: ";
-    }
-    /* td:nth-child(6)::before{
-        content: "Checked in?";
-    } */
-    /* .col-sm-20::before{
-        content: "Checked In?";
-    } */
 }
 
 .mb-0{

@@ -1678,9 +1678,10 @@ button.submit-btn:hover {
     margin-top: 40px;
 }
 
-/* .new-container { */
-    /* margin: 60px 0; */
-/* } */
+.new-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 .user-form-wrapper input,
 .user-form-wrapper textarea {
@@ -3252,7 +3253,24 @@ span.line {
     margin-bottom: 2px;
 }
 
-@media screen and (max-width: 800px) {
+.mb-0{
+    font-size: 14px;
+}
+@media screen and (max-width: 479px) { 
+    .fc .fc-toolbar.fc-header-toolbar { 
+      display: grid !important; 
+    }
+  } 
+
+  .fc .fc-col-header-cell-cushion { 
+    font-size: 10px; 
+  } 
+
+  .fc { 
+  height:750px; 
+  } 
+
+  @media screen and (max-width: 800px) {
     .col-sm-1{
         display: none;
     }
@@ -3264,6 +3282,9 @@ span.line {
     }
     td{
         display: block;
+    }
+    td:nth-child(1){
+        background-color: lightgray;
     }
     td:nth-child(1)::before{
         content: "Date: ";
@@ -3281,10 +3302,10 @@ span.line {
         content: "Actions: ";
     }
     .com-sm-22::before{
-        content: "Checked in: ";
+        content: "Checked in?: ";
     }
     .com-sm-21::before{
-        content: "Rated: ";
+        content: "Rated?: ";
     }
     /* td:nth-child(6)::before{
         content: "Checked in?";
@@ -3292,8 +3313,4 @@ span.line {
     /* .col-sm-20::before{
         content: "Checked In?";
     } */
-}
-
-.mb-0{
-    font-size: 14px;
 }

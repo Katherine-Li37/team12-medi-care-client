@@ -106,7 +106,7 @@ export default class ClinicDetails extends Component {
                                 <p className="mb-0">Name:  {this.state.clinic.name}</p>
                                 <p className="mb-0">Address:  {this.state.clinic.address}, {this.state.clinic.city},  {this.state.clinic.state} {this.state.clinic.zipcode}</p>
                                 <p className="mb-0">Phone:  {this.state.clinic.phone}</p>
-                                <p className="mb-0">Phone:  {this.state.clinic.email}</p>
+                                <p className="mb-0">Email:  {this.state.clinic.email}</p>
                                 <p className="mb-0">Rating:  {this.state.clinic.rating} / 5</p>
                             </div>
                             <div className="card-body">
@@ -123,6 +123,7 @@ export default class ClinicDetails extends Component {
                         <div className="card">
                             <div className="card-body">
                                 <h4 className="card-title">Appointment Calendar</h4>
+                                <div className="book-button"> 
                                 {this.state.userLoggedIn && 
                                     <button type="button"> 
                                         <Link to={{
@@ -136,6 +137,7 @@ export default class ClinicDetails extends Component {
                                         </Link>
                                     </button>
                                 }
+                                </div>
                                 {!this.state.userLoggedIn && 
                                     <button type="button"> 
                                         <Link className="nav-link" to='/LogIn'>Log In to Book Appointment</Link>

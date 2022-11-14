@@ -3313,3 +3313,8 @@ span.line {
         content: "Checked In?";
     } */
 }
+
+.error-msg {
+    float: left;
+    margin-left: 20px;
+}

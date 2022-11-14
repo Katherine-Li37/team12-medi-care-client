@@ -50,7 +50,7 @@ export default class ProfileDetails extends Component {
                     let upcomingAppointment = [];
                     data.forEach((appointment) =>{
                         if(appointment.status === 'active'){
-                            if (new Date(appointment.date)>= new Date()){
+                            if (new Date(appointment.date).getDate()>= new Date().getDate()){
                                 upcomingAppointment.push(appointment);
                             }else{
                                 pastAppointment.push(appointment);

@@ -106,9 +106,9 @@ export default class ProfileDetails extends Component {
                                             {this.state.upcomingAppointment.map((appointment) => {
                                                 return (
                                                     <tr>
-                                                        <td>{ new Date(appointment.date).toLocaleDateString('en-US') }</td>
-                                                        <td>{ appointment.time }</td>
-                                                        <td>
+                                                        <td className='appointment-table'>{ new Date(appointment.date).toLocaleDateString('en-US') }</td>
+                                                        <td className='appointment-table'>{ appointment.time }</td>
+                                                        <td className='appointment-table'>
                                                             <Link to={{
                                                                 pathname: `/Clinic/${appointment.clinicID}`,
                                                                 state: { 
@@ -119,9 +119,9 @@ export default class ProfileDetails extends Component {
                                                                 { appointment.clinicName }
                                                             </Link>
                                                         </td>
-                                                        <td>{ appointment.procedure }</td>
-                                                        <td> 
-                                                        <Link to={{
+                                                        <td className='appointment-table'>{ appointment.procedure }</td>
+                                                        <td className='appointment-table'> 
+                                                            <Link to={{
                                                                 pathname: `/AppointmentWaitTime/${appointment._id}`,
                                                                 state: { 
                                                                     appointment: appointment,
@@ -131,7 +131,7 @@ export default class ProfileDetails extends Component {
                                                                 Check Wait Time / Check-in
                                                             </Link>
                                                         </td> 
-                                                        <td className='com-sm-22'>
+                                                        <td className='appointment-table com-sm-22'>
                                                             { appointment.ifCheckedIn && <FcCheckmark />}
                                                         </td>
                                                     </tr>
@@ -159,9 +159,9 @@ export default class ProfileDetails extends Component {
                                             {this.state.pastAppointment.map((appointment) => {
                                                 return (
                                                     <tr>
-                                                        <td>{ new Date(appointment.date).toLocaleDateString('en-US') }</td>
-                                                        <td>{ appointment.time }</td>
-                                                        <td>
+                                                        <td className='appointment-table'>{ new Date(appointment.date).toLocaleDateString('en-US') }</td>
+                                                        <td className='appointment-table'>{ appointment.time }</td>
+                                                        <td className='appointment-table'>
                                                             <Link to={{
                                                                 pathname: `/Clinic/${appointment.clinicID}`,
                                                                 state: { 
@@ -172,8 +172,8 @@ export default class ProfileDetails extends Component {
                                                                 { appointment.clinicName }
                                                             </Link>
                                                         </td>
-                                                        <td>{ appointment.procedure }</td>
-                                                        <td> 
+                                                        <td className='appointment-table'>{ appointment.procedure }</td>
+                                                        <td className='appointment-table'> 
                                                             {appointment.ifRated!==true && 
                                                                 <Link to={{
                                                                     pathname: `/AppointmentFeedback/${appointment._id}`,
@@ -186,7 +186,7 @@ export default class ProfileDetails extends Component {
                                                                 </Link>
                                                             }
                                                         </td>
-                                                        <td className='com-sm-21'>
+                                                        <td className='appointment-table com-sm-21'>
                                                             { appointment.ifRated && <FcCheckmark />}
                                                         </td>
                                                     </tr>

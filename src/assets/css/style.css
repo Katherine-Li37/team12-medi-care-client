@@ -78,6 +78,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
 }
 
 ul {
@@ -503,9 +504,9 @@ body.style-two>a {
     padding: 5px 0px;
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
     position: relative;
-}
+} */
 
 .header-one {
     position: absolute;
@@ -1657,10 +1658,6 @@ button.submit-btn:hover {
     color: #999999;
 }
 
-.c-info h4 {
-    /* text-transform: capitalize; */
-}
-
 .user-form-wrapper {
     margin-top: 20px;
 }
@@ -1671,11 +1668,15 @@ button.submit-btn:hover {
 }
 
 .user-form-wrapper h1 {
-    text-align: center;
+    text-align: left;
     font-size: 60px;
     line-height: 1;
     margin-bottom: 50px;
     margin-top: 40px;
+}
+
+.user-form-wrapper li {
+    text-align: left;
 }
 
 .new-container {
@@ -1793,8 +1794,6 @@ button.contact-submit-btn {
     font-weight: 400;
 }
 
-.single-blog-details p:last-child {}
-
 .post-tags-cate-section a {
     color: #818181;
 }
@@ -1858,7 +1857,6 @@ button.contact-submit-btn {
 .btn-replay {
     color: #3B3B3B;
     display: inline-block;
-    float: left;
 }
 
 .comment-text {
@@ -3256,21 +3254,22 @@ span.line {
 .mb-0{
     font-size: 14px;
 }
+
 @media screen and (max-width: 479px) { 
     .fc .fc-toolbar.fc-header-toolbar { 
-      display: grid !important; 
+        display: grid !important; 
     }
-  } 
+} 
 
-  .fc .fc-col-header-cell-cushion { 
+.fc .fc-col-header-cell-cushion { 
     font-size: 10px; 
-  } 
+} 
 
-  .fc { 
-  height:750px; 
-  } 
+.fc { 
+    height:750px; 
+} 
 
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .col-sm-1{
         display: none;
     }
@@ -3280,25 +3279,25 @@ span.line {
     .col-sm-20{
         display: none;
     }
-    td{
+    .appointment-table {
         display: block;
     }
-    td:nth-child(1){
+    .appointment-table:nth-child(1){
         background-color: lightgray;
     }
-    td:nth-child(1)::before{
+    .appointment-table:nth-child(1)::before{
         content: "Date: ";
     }
-    td:nth-child(2)::before{
+    .appointment-table:nth-child(2)::before{
         content: "Time: ";
     }
-    td:nth-child(3)::before{
+    .appointment-table:nth-child(3)::before{
         content: "Clinic: ";
     }
-    td:nth-child(4)::before{
+    .appointment-table:nth-child(4)::before{
         content: "Procedure: ";
     }
-    td:nth-child(5)::before{
+    .appointment-table:nth-child(5)::before{
         content: "Actions: ";
     }
     .com-sm-22::before{

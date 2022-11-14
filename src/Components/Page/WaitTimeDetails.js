@@ -128,7 +128,7 @@ export default class WaitTimeDetails extends Component {
                             <h2>People in queue: {this.state.waitCountInQueue}</h2> 
                             <h2>Estimated wait time: {this.state.waitTimeFormat}</h2>
                             
-                            {(this.state.ifOneHourBeforeAppointment && this.state.checkInSuccess!==true || this.state.appointment.ifCheckedIn!==true) && <button className="contact-submit-btn" onClick={this.checkIn}>Check in</button>}
+                            {((this.state.ifOneHourBeforeAppointment && this.state.checkInSuccess!==true) || this.state.appointment.ifCheckedIn!==true) && <button className="contact-submit-btn" onClick={this.checkIn}>Check in</button>}
 
                             { (this.state.checkInSuccess===true || this.state.appointment.ifCheckedIn===true) && 
                                 <div>

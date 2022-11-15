@@ -67,7 +67,7 @@ export default class LogIn extends Component {
                             <div className="col-lg-12 col-md-12 col-12">
                                 <input type="Password" placeholder="password" onChange={this.setLoginPassword}/>
                             </div>
-                            {this.state.loginSuccess===false && <span className="error-msg">Log in failed</span>}
+                            {this.state.loginSuccess===false && <span className="error-msg error-msg-left">Log in failed</span>}
                             <div>
                                 <button className="contact-submit-btn" onClick={this.login}>Submit</button>
                             </div>

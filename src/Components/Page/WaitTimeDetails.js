@@ -66,7 +66,7 @@ export default class WaitTimeDetails extends Component {
         appointments.forEach((appointment)=>{
             let appointmentAt = new Date(new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time)
             let diff = (appointmentAt.getTime() - currentAt.getTime()) / 60000; // in minutes
-            if (diff <= 60 && diff >= 0) { // get appointment count within next hour
+            if (diff < 60 && diff >= 0) { // get appointment count within next hour
                 waitCount++
             }
         })

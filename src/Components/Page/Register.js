@@ -214,17 +214,17 @@ export default class Register extends Component {
                             <div className="col-lg-12 col-md-12 col-12">
                                 <input placeholder="Email" onChange={this.setEmail}/>
                             </div>  
-                            {this.state.ifEmailExist && <span className="error-msg">Email exists</span>}  
-                            {!this.state.ifEmailFormat && <span className="error-msg">Not valid email</span>}
+                            {this.state.ifEmailExist && <span className="error-msg error-msg-left">Email exists</span>}  
+                            {!this.state.ifEmailFormat && <span className="error-msg error-msg-left">Not valid email</span>}
                             
                             <div className="col-lg-12 col-md-12 col-12">
                                 <input type="password" placeholder="Password" onChange={this.setPassword}/>
                             </div>
-                            {!this.state.ifStrongPassword && <span className="error-msg">Password need to be with minimum length 6</span>}  
+                            {!this.state.ifStrongPassword && <span className="error-msg error-msg-left">Password need to be with minimum length 6</span>}  
                             <div className="col-lg-12 col-md-12 col-12">
                                 <input type="password" placeholder="Confirm Password" onChange={this.setRepeatPassword}/>
                             </div>  
-                            {!this.state.ifPasswordMatch && <span className="error-msg">Password not match</span>}
+                            {!this.state.ifPasswordMatch && <span className="error-msg error-msg-left">Password not match</span>}
 
 
                             <div className="col-lg-12 col-md-12 col-12">
@@ -237,7 +237,7 @@ export default class Register extends Component {
                             <div className="col-lg-12 col-md-12 col-12">
                                 <input placeholder="Phone Number" onChange={this.setPhone}/>
                             </div>  
-                            {this.state.ifPhoneExist && <span className="error-msg">Phone number exists</span>}  
+                            {this.state.ifPhoneExist && <span className="error-msg error-msg-left">Phone number exists</span>}  
 
                             <div>
                                 {this.state.buttonEnabled &&
@@ -246,7 +246,7 @@ export default class Register extends Component {
                                 {!this.state.buttonEnabled &&
                                     <button className="contact-submit-btn-disabled" >Submit</button>
                                 }   
-                                {this.state.registerSuccess===true && <span className="error-msg">New User created</span>}                                
+                                {this.state.registerSuccess===true && <span className="error-msg error-msg-left">New User created</span>}                                
                             </div>
                         </div>
                     </div>

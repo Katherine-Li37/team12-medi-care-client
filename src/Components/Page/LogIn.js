@@ -69,7 +69,13 @@ export default class LogIn extends Component {
                             </div>
                             {this.state.loginSuccess===false && <span className="error-msg error-msg-left">Log in failed</span>}
                             <div>
-                                <button className="contact-submit-btn" onClick={this.login}>Submit</button>
+                                {this.state.loginEmail && this.state.loginPassword &&  
+                                    <button className="contact-submit-btn" onClick={this.login}>Submit</button>
+                                }   
+                                { (!this.state.loginEmail || !this.state.loginPassword) &&  
+                                    <button className="contact-submit-btn-disabled" >Submit</button>
+                                }   
+                                {/* <button className="contact-submit-btn" onClick={this.login}>Submit</button> */}
                             </div>
                         </div>
                     </div>

@@ -29,51 +29,51 @@ import env from '../../config_env.json';
 
 // let eventGuid = 0;
 
-export default class ProfileDetails extends Component {
+export default class AppointmentsList extends Component {
     constructor(props) {
         super(props);
         this.state ={
             user: this.props.location.state.user,
             userLoggedIn: this.props.location.state.userLoggedIn,
 
-            // pastAppointment: [],
-            // upcomingAppointment: [],
+            pastAppointment: [],
+            upcomingAppointment: [],
         }       
     }
 
-    // componentDidMount() {
-    //     if (this.state.userLoggedIn){
-    //         fetch(env.api + '/appointments/patient/' + this.state.userLoggedIn._id.toString())
-    //             .then(res => res.json())
-    //             .then((data) => {
-    //                 let pastAppointment = [ ];
-    //                 let upcomingAppointment = [];
-    //                 data.forEach((appointment) =>{
-    //                     if(appointment.status === 'active'){
-    //                         if (new Date(appointment.date).getTime() >= new Date().getTime()){
-    //                             upcomingAppointment.push(appointment);
-    //                         } else{
-    //                             pastAppointment.push(appointment);
-    //                         }
-    //                     }
-    //                 });
+    componentDidMount() {
+        if (this.state.userLoggedIn){
+            fetch(env.api + '/appointments/patient/' + this.state.userLoggedIn._id.toString())
+                .then(res => res.json())
+                .then((data) => {
+                    let pastAppointment = [ ];
+                    let upcomingAppointment = [];
+                    data.forEach((appointment) =>{
+                        if(appointment.status === 'active'){
+                            if (new Date(appointment.date).getTime() >= new Date().getTime()){
+                                upcomingAppointment.push(appointment);
+                            } else{
+                                pastAppointment.push(appointment);
+                            }
+                        }
+                    });
 
-    //                 // sort appointment by day and time
-    //                 pastAppointment.sort(function(a,b){
-    //                     return new Date(b.date).getTime() - new Date(a.date).getTime();
-    //                 });
-    //                 upcomingAppointment.sort(function(a,b){
-    //                     return new Date(b.date).getTime() - new Date(a.date).getTime();
-    //                 });
+                    // sort appointment by day and time
+                    pastAppointment.sort(function(a,b){
+                        return new Date(b.date).getTime() - new Date(a.date).getTime();
+                    });
+                    upcomingAppointment.sort(function(a,b){
+                        return new Date(b.date).getTime() - new Date(a.date).getTime();
+                    });
 
-    //                 this.setState({ 
-    //                     pastAppointment: pastAppointment,
-    //                     upcomingAppointment: upcomingAppointment
-    //                 });
-    //             })
-    //             .catch(console.log)
-    //         }
-    // }
+                    this.setState({ 
+                        pastAppointment: pastAppointment,
+                        upcomingAppointment: upcomingAppointment
+                    });
+                })
+                .catch(console.log)
+            }
+    }
 
 
     render() {
@@ -85,24 +85,6 @@ export default class ProfileDetails extends Component {
                     <Banner/>
                     <div className="container new-container">
                         <div className="card">
-                            <div className="card-body">
-                                <h1 className="card-title">Profile Information</h1>
-                                <div className="row">
-                                    <div className="col-sm-3"><h3>Full Name</h3></div>
-                                    <div className="col-sm-9"><h3 className='text-secondary'>{userLoggedIn.firstName} {userLoggedIn.lastName}</h3></div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-3"><h3>Email</h3></div>
-                                    <div className="col-sm-9 text-secondary"><h3 className='text-secondary'>{userLoggedIn.username}</h3></div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-3"><h3>Phone Number</h3></div>
-                                    <div className="col-sm-9 text-secondary"><h3 className='text-secondary'>{userLoggedIn.phone}</h3></div>
-                                </div>
-                            </div>
-                        </div>
-
-                                                {/* <div className="card">
                             <div className="card-body">
                                 <h1 className="card-title">Appointment</h1>
                                 <div className="row">
@@ -212,6 +194,23 @@ export default class ProfileDetails extends Component {
                                             })}
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="card">
+                            <div className="card-body">
+                                <h3 className="card-title">Profile Information</h3>
+                                <div className="row">
+                                    <div className="col-sm-3"><h6 className="mb-0">Full Name</h6></div>
+                                    <div className="col-sm-9 text-secondary"> {userLoggedIn.firstName} {userLoggedIn.lastName}</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-sm-3"><h6 className="mb-0">Email</h6></div>
+                                    <div className="col-sm-9 text-secondary"> {userLoggedIn.username}</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-sm-3"><h6 className="mb-0">Phone Number</h6></div>
+                                    <div className="col-sm-9 text-secondary"> {userLoggedIn.phone}</div>
                                 </div>
                             </div>
                         </div> */}

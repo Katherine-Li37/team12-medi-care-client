@@ -118,13 +118,13 @@ export default class Register extends Component {
     setFirstName = (event) => {
         this.setState({
             firstName: event.target.value
-        })
+        }, this.checkIfEnableButton())
     }
 
     setLastName = (event) => {
         this.setState({
             lastName: event.target.value
-        })
+        }, this.checkIfEnableButton())
     }
 
     setPhone = (event) => {
@@ -196,6 +196,33 @@ export default class Register extends Component {
                 this.setState({
                     registerSuccess: true
                 })
+                this.login()
+            }
+        });
+    };
+
+    login = () => {
+        Axios({
+          method: 'POST',
+          data: {
+            username: this.state.email,
+            password: this.state.password,
+          },
+          withCredentials: true,
+          url: env.api + '/login',
+        }).then((res) => {
+            if(res.data.success){
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('username', res.data.username);
+                this.setState({
+                    loginSuccess: true
+                })
+                this.props.history.push("/");
+                window.location.reload(true);
+            } else {
+                this.setState({
+                    loginSuccess: false
+                })
             }
         });
     };
@@ -207,7 +234,7 @@ export default class Register extends Component {
                 <div className="user-form-wrapper">
                     <div className="container">
                         <div className="user-form-one">
-                            <h1>Register</h1>
+                            <h1>Sign up</h1>
                                                     
                             <li><Link to='/LogIn'>Already have an account? Log in</Link></li>
                             

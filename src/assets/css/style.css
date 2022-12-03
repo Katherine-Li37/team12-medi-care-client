@@ -3259,6 +3259,9 @@ span.line {
     .fc .fc-toolbar.fc-header-toolbar { 
         display: grid !important; 
     }
+    .search-location-bar {
+        width: 84%;
+    }
 } 
 
 .fc .fc-col-header-cell-cushion { 
@@ -3312,9 +3315,16 @@ span.line {
     /* .col-sm-20::before{
         content: "Checked In?";
     } */
+
 }
 
 .error-msg-left {
     float: left;
     margin-left: 20px;
+}
+
+@media screen and (min-width: 500px) { 
+.search-location-bar {
+    width: 80%;
+}
 }

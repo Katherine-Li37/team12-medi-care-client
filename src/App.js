@@ -10,6 +10,7 @@ import LogIn from './Components/Page/LogIn';
 import Register from './Components/Page/Register';
 import AppointmentPage from './Components/Page/AppointmentPage';
 import ProfileDetails from './Components/Page/ProfileDetails';
+import AppointmentsList from './Components/Page/AppointmentsList';
 import ClinicDetails from './Components/Page/ClinicDetails';
 import FeedbackDetails from './Components/Page/FeedbackDetails';
 import AdminPanel from './Components/Page/AdminPanel';
@@ -27,7 +28,8 @@ function App() {
                 <Home />
             )} />
             <Route path = '/ScheduleAppointment' component = { AppointmentPage }/>
-            <Route path = '/Profile/:id' component = { ProfileDetails }/> 
+            <Route path = '/MyProfile/:id' component = { ProfileDetails }/> 
+            <Route path = '/MyAppointments/:id' component = { AppointmentsList }/> 
             <Route path = '/AppointmentWaitTime/:id' component = { WaitTimeDetails }/> 
             <Route path = '/AdminPanel' component = { AdminPanel }/> 
             <Route path = '/Clinic/:id' component = { ClinicDetails }/> 

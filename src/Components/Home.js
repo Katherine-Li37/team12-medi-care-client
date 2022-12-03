@@ -94,7 +94,8 @@ export default class Home extends Component {
               <Banner/>
                 <div className="container">
                     <div className="col-lg-12 col-md-12 col-12"> 
-                        <input placeholder="Search by zip code" onChange={this.setSearchZipCode}/>
+                        <h1> Search Clinic and Book an Appointment:</h1>
+                        <input className="search-location-bar" placeholder='Search by zip code "75080" or city "Richardson"' onChange={this.setSearchZipCode}/>
                         <button onClick={this.search}>Search</button>
                     </div>
                     

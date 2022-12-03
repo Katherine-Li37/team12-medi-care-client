@@ -52,19 +52,36 @@ export default class Navbar extends Component {
                             <div className="col-lg-10 col-md-9 d-none d-lg-block text-lg-right">
                                 <nav id="responsive-menu" className="menu-style-one">
                                     <ul className="menu-items">
-                                        <li><Link to='/'>Home</Link></li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link"to='/'>Home</Link>
+                                        </li>
                                         {!this.state.username &&
                                             <li className="nav-item">
-                                                <Link className="nav-link" to='/LogIn'>Sign up/ Log in</Link>
+                                                <Link className="nav-link" to='/LogIn'>Log in</Link>
+                                            </li>
+                                        }
+                                        {!this.state.username &&
+                                            <li className="nav-item">
+                                                <Link className="nav-link" to='/Register'>Sign up</Link>
                                             </li>
                                         }
                                         {this.state.username && this.state.username !=="Admin" &&
                                             <li className="nav-item">
                                                 <Link className="nav-link" to={{
-                                                    pathname: `/Profile/${this.state.userID}`,
+                                                    pathname: `/MyProfile/${this.state.userID}`,
                                                     state: { userLoggedIn: this.state.userLoggedIn }
                                                 }}>
-                                                    {this.state.username}
+                                                    My Profile
+                                                </Link>
+                                            </li>
+                                        }
+                                        {this.state.username && this.state.username !=="Admin" &&
+                                            <li className="nav-item">
+                                                <Link className="nav-link" to={{
+                                                    pathname: `/MyAppointments/${this.state.userID}`,
+                                                    state: { userLoggedIn: this.state.userLoggedIn }
+                                                }}>
+                                                    My Appointments
                                                 </Link>
                                             </li>
                                         }
@@ -99,16 +116,31 @@ export default class Navbar extends Component {
                                     </li>
                                     {!this.state.username &&
                                         <li className="nav-item">
-                                            <Link className="nav-link" to='/LogIn'>Sign up/ Log in</Link>
+                                            <Link className="nav-link" to='/LogIn'>Log in</Link>
+                                        </li>
+                                    }
+                                    {!this.state.username &&
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to='/Register'>Sign up</Link>
                                         </li>
                                     }
                                     {this.state.username && this.state.username !=="Admin" &&
                                         <li className="nav-item">
                                             <Link className="nav-link" to={{
-                                                pathname: `/Profile/${this.state.userID}`,
+                                                pathname: `/MyProfile/${this.state.userID}`,
                                                 state: { userLoggedIn: this.state.userLoggedIn }
                                             }}>
-                                                {this.state.username}
+                                                My Profile
+                                            </Link>
+                                        </li>
+                                    }
+                                    {this.state.username && this.state.username !=="Admin" &&
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to={{
+                                                pathname: `/MyAppointments/${this.state.userID}`,
+                                                state: { userLoggedIn: this.state.userLoggedIn }
+                                            }}>
+                                                My Appointments
                                             </Link>
                                         </li>
                                     }

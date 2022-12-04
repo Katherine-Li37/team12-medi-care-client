@@ -9,6 +9,7 @@ import Home from './Components/Home';
 import LogIn from './Components/Page/LogIn';
 import Register from './Components/Page/Register';
 import AppointmentPage from './Components/Page/AppointmentPage';
+import EditAppointment from './Components/Page/EditAppointment';
 import ProfileDetails from './Components/Page/ProfileDetails';
 import AppointmentsList from './Components/Page/AppointmentsList';
 import ClinicDetails from './Components/Page/ClinicDetails';
@@ -28,6 +29,7 @@ function App() {
                 <Home />
             )} />
             <Route path = '/ScheduleAppointment' component = { AppointmentPage }/>
+            <Route path = '/EditAppointment/:id' component = { EditAppointment }/>
             <Route path = '/MyProfile/:id' component = { ProfileDetails }/> 
             <Route path = '/MyAppointments/:id' component = { AppointmentsList }/> 
             <Route path = '/AppointmentWaitTime/:id' component = { WaitTimeDetails }/> 

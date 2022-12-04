@@ -205,7 +205,7 @@ export default class AdminPanel extends Component {
         }
     }
 
-    onSumbit = () => {
+    onSubmit = () => {
         Axios({
           method: 'POST',
           data: {
@@ -323,7 +323,7 @@ export default class AdminPanel extends Component {
                                 </div>
 
                                 {this.state.buttonEnabled &&
-                                    <button className='contact-submit-btn' onClick={this.onSumbit}>Submit</button>
+                                    <button className='contact-submit-btn' onClick={this.onSubmit}>Submit</button>
                                 }   
                                 {!this.state.buttonEnabled &&
                                     <button className='contact-submit-btn-disabled'>Submit</button>

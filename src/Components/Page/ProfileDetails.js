@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import Axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Banner from '../Header/Banner';
-import { FcCheckmark } from "react-icons/fc";
-import env from '../../config_env.json';
+// import { FcCheckmark } from "react-icons/fc";
+// import env from '../../config_env.json';
 // import AdminPanel from './AdminPanel';
 // import DoctorDetail from './DoctorDetail';
 

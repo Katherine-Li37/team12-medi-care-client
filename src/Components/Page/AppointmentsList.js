@@ -88,8 +88,10 @@ export default class AppointmentsList extends Component {
                             <div className="card-body">
                                 <h1 className="card-title">Appointment</h1>
                                 <div className="row">
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-12">
                                         <h3>Upcoming Appointment</h3>
+                                        <p>You can check your appointment wait time and check-in up to 1 hour prior to your appointment time when you arrive at the clinic.</p>
+                                        <p>Once checked in, the clinic staff will be notified that you are ready for your appointment.</p>
                                     </div>
                                     <table className="table">
                                         <thead>
@@ -141,9 +143,10 @@ export default class AppointmentsList extends Component {
                                     </table>
                                 </div>
                                 <div className="row">
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-12">
                                         <h3>Past Appointment</h3>
-                                        </div>
+                                        <p>Please provide feedback for your past appointments to get gift card reward and help us improve. </p>
+                                    </div>
                                     <table className="table">
                                         <thead>
                                         <tr>

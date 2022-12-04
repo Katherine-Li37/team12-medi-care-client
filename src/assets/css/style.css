@@ -1663,7 +1663,7 @@ button.submit-btn:hover {
 }
 
 .user-form-wrapper .container {
-    text-align: center;
+    /* text-align: center; */
     display: flex;
 }
 

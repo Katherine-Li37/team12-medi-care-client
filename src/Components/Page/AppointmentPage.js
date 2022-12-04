@@ -78,10 +78,19 @@ export default class AppointmentPage extends Component {
     displayAppointments=(appointments)=>{
         let appointmentEvents =[];
         appointments.forEach((appointment)=>{
-            let event = {
-                id: this.createEventId(),
-                title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
-                start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+            let event = null
+            if (appointment.patientID === this.state.userLoggedIn._id){
+                event = {
+                    id: this.createEventId(),
+                    title: appointment.patientName + ' - ' + appointment.procedure,
+                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                }
+            } else {
+                event = {
+                    id: this.createEventId(),
+                    title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
+                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                }
             }
             appointmentEvents.push(event);
         });
@@ -122,21 +131,21 @@ export default class AppointmentPage extends Component {
             while (timeSlot.getTime()< endTime.getTime()){
         
                 timeSlotArray.push(timeSlot.toLocaleTimeString('it-IT'));
-                timeSlot.setHours( timeSlot.getHours() + 1 );
+                timeSlot.setHours(timeSlot.getHours(), timeSlot.getMinutes()+30);
             }
             this.filterOutExistedAppointment(date, timeSlotArray);
         }
     }
 
     filterOutExistedAppointment = (date, timeSlotArray) => {
-        // let existedAppointmentTime = [];
-        // this.state.existedAppointments.forEach((appointment)=>{
-        //     if(date.getTime() === new Date(appointment.date).getTime()){
-        //         existedAppointmentTime.push(appointment.time);
-        //     }
-        // })
-        // const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
-        const filteredArray = timeSlotArray;
+        let existedAppointmentTime = [];
+        this.state.existedAppointments.forEach((appointment)=>{
+            if(date.getTime() === new Date(appointment.date).getTime()){
+                existedAppointmentTime.push(appointment.time);
+            }
+        })
+        const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
+        // const filteredArray = timeSlotArray;
         this.setState({
             availableTimeList: filteredArray,
             timeSelected: filteredArray[0]
@@ -194,6 +203,8 @@ export default class AppointmentPage extends Component {
 
     render() {
         const procedureList = ['Surgery', 'Check-up', 'Follow-up']
+        const date = new Date();
+        const tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
 
         return (
             <React.Fragment>
@@ -209,7 +220,7 @@ export default class AppointmentPage extends Component {
                                     onChange={ this.dateChange }
                                     name='date'
                                     dateFormat='MM/dd/yyyy'
-                                    minDate={new Date()}
+                                    minDate={tomorrow}
                                 />
                             </div>
 

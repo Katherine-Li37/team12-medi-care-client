@@ -175,21 +175,21 @@ export default class AdminPanel extends Component {
             while (timeSlot.getTime()< endTime.getTime()){
         
                 timeSlotArray.push(timeSlot.toLocaleTimeString('it-IT'));
-                timeSlot.setHours( timeSlot.getHours() + 1 );
+                timeSlot.setHours(timeSlot.getHours(), timeSlot.getMinutes()+30);
             }
             this.filterOutExistedAppointment(date, timeSlotArray);
         }
     }
 
     filterOutExistedAppointment = (date, timeSlotArray) => {
-        // let existedAppointmentTime = [];
-        // this.state.existedAppointments.forEach((appointment)=>{
-        //     if(date.getTime() === new Date(appointment.date).getTime()){
-        //         existedAppointmentTime.push(appointment.time);
-        //     }
-        // })
-        // const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
-        const filteredArray = timeSlotArray;
+        let existedAppointmentTime = [];
+        this.state.existedAppointments.forEach((appointment)=>{
+            if(date.getTime() === new Date(appointment.date).getTime()){
+                existedAppointmentTime.push(appointment.time);
+            }
+        })
+        const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
+        // const filteredArray = timeSlotArray;
         this.setState({
             availableTimeList: filteredArray,
             timeSelected: filteredArray[0]
@@ -247,6 +247,8 @@ export default class AdminPanel extends Component {
 
     render() {
         const procedureList = ['Surgery', 'Check-up', 'Follow-up']
+        const date = new Date();
+        const tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
 
         return (
             <React.Fragment>
@@ -290,7 +292,7 @@ export default class AdminPanel extends Component {
                                         onChange={ this.dateChange }
                                         name='date'
                                         dateFormat='MM/dd/yyyy'
-                                        minDate={new Date()}
+                                        minDate={tomorrow}
                                     />
                                 </div>
 

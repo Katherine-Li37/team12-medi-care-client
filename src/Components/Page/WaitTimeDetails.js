@@ -66,7 +66,7 @@ export default class WaitTimeDetails extends Component {
         appointments.forEach((appointment)=>{
             let appointmentAt = new Date(new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time)
             let diff = (appointmentAt.getTime() - currentAt.getTime()) / 60000; // in minutes
-            if (diff < 60 && diff >= 0) { // get appointment count within next hour
+            if (diff < 120 && diff >= 0 && appointment.patientID !== this.state.userLoggedIn._id) { // get appointment count within next 2 hour
                 waitCount++
             }
         })
@@ -125,9 +125,14 @@ export default class WaitTimeDetails extends Component {
                             <h1>Virtual Queue</h1>
                             <h2>Current time:  {this.state.currentDateFormat} {this.state.currentTimeFormat}</h2>
                             <h2>Your appointment time: {this.state.appointmentDateFormat} {this.state.appointment.time}</h2>
-                            <h2>People in queue: {this.state.waitCountInQueue}</h2> 
+                            <h2>Other patients waiting in queue: {this.state.waitCountInQueue}</h2> 
                             <h2>Estimated wait time: {this.state.waitTimeFormat}</h2>
-                            
+                            <br/>
+                            <h3>Note: </h3>
+                            <h3>"Other patients waiting in queue" refers to how many appointments have been scheduled within 2-hour of your appointment time.</h3>
+                            <h3>Each appointment will increment the Estimated wait time by 30 minutes as default.</h3>
+
+
                             {(this.state.ifOneHourBeforeAppointment && this.state.checkInSuccess!==true && this.state.appointment.ifCheckedIn!==true) 
                                 && <button className="contact-submit-btn" onClick={this.checkIn}>Check in</button>
                             }

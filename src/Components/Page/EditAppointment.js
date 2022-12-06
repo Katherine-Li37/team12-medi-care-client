@@ -22,35 +22,64 @@ weekday[6] = 'Saturday';
 
 let eventGuid = 0;
 
-export default class AppointmentPage extends Component {
+export default class EditAppointment extends Component {
     constructor(props) {
         super(props);
     
         this.state ={
             // confirm logged-in
             userLoggedIn: this.props.location.state.userLoggedIn,
-            clinic: this.props.location.state.clinic,
+            appointmentID: this.props.location.state.appointment._id,
 
+            appointment: null,
+            clinic: null,
             hours: null,
             existedAppointments: [],
             displayedAppointments: [],
 
-            serviceSelected: 'Surgery',
+            serviceSelected: null,
             dateSelected: null,
             availableTimeList: [],
             timeSelected: null,
             buttonEnabled: false,
-            createAppointmentSuccess: false,
+            updateAppointmentSuccess: false,
 
             weekendsVisible: true,
             currentEvents: []
         };
-        this.getWorkHours();
+        
     }
 
-
     async componentDidMount() {
-        fetch(env.api + '/appointments/clinic/' + this.state.clinic._id.toString())
+        fetch(env.api + '/appointments/appointment/' + this.state.appointmentID)
+        .then(res => res.json())
+        .then((data) => {
+            this.setState({ appointment: data[0] },
+                this.loadAppointmentByClinic(data[0].clinicID)
+            );
+        })
+        .catch(console.log)
+    }
+
+    loadAppointmentByClinic = (clinicID) =>{
+        fetch(env.api + '/clinics/' + clinicID)
+        .then(res => res.json())
+        .then((data) => {
+            this.setState({ 
+                clinic: data,
+                serviceSelected: this.state.appointment.procedure,
+                dateSelected: new Date(this.state.appointment.date),
+                // timeSelected: this.state.appointment.time,
+                buttonEnabled: true, 
+            });
+            this.getExistedAppointmentByClinic(clinicID)
+            this.getWorkHours();
+        })
+        .catch(console.log)     
+    }
+
+    getExistedAppointmentByClinic = (clinicID) => {
+        fetch(env.api + '/appointments/clinic/' + clinicID)
         .then(res => res.json())
         .then((data) => {
             this.setState({ existedAppointments: data });
@@ -69,6 +98,7 @@ export default class AppointmentPage extends Component {
             }
         });
         this.state.hours=dateList
+        this.loadTimeSlots(new Date(this.state.appointment.date));
     }
     
     createEventId = () => {
@@ -129,7 +159,6 @@ export default class AppointmentPage extends Component {
             let timeSlotArray=['Select Time'];
             let timeSlot = startTime;
             while (timeSlot.getTime()< endTime.getTime()){
-        
                 timeSlotArray.push(timeSlot.toLocaleTimeString('it-IT'));
                 timeSlot.setHours(timeSlot.getHours(), timeSlot.getMinutes()+30);
             }
@@ -145,10 +174,9 @@ export default class AppointmentPage extends Component {
             }
         })
         const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
-        // const filteredArray = timeSlotArray;
         this.setState({
             availableTimeList: filteredArray,
-            timeSelected: filteredArray[0]
+            timeSelected: this.state.appointment.time
         })
         this.checkIfEnableButton();
     }
@@ -163,24 +191,26 @@ export default class AppointmentPage extends Component {
 
     onSubmit = () => {
         Axios({
-          method: 'POST',
-          data: {
-            clinicID: this.state.clinic._id,
-            clinicName: this.state.clinic.name,
-            patientID: this.state.userLoggedIn._id,
-            patientName: this.state.userLoggedIn.firstName + ' ' + this.state.userLoggedIn.lastName,
-            date: this.state.dateSelected,
-            time: this.state.timeSelected,
-            procedure: this.state.serviceSelected,
-            status: 'active'
-          },
-          url: env.api + '/appointments/create',
+            method: 'POST',
+            data: {
+                clinicID: this.state.appointment.clinicID,
+                clinicName: this.state.appointment.clinicName,
+                patientID: this.state.appointment.patientID,
+                patientName: this.state.appointment.patientName,
+                date: this.state.dateSelected,
+                time: this.state.timeSelected,
+                procedure: this.state.serviceSelected,
+                status: this.state.appointment.status,
+                ifCheckedIn: this.state.appointment.ifCheckedIn,
+                ifRated: this.state.appointment.ifRated
+            },
+            url: env.api + '/appointments/update/' + this.state.appointment._id
         }).then((res) => {
             if(res.data){
                 this.setState({
-                    createAppointmentSuccess: true
+                    updateAppointmentSuccess: true,
                 })
-            }
+            } 
         });
     };
 
@@ -209,57 +239,59 @@ export default class AppointmentPage extends Component {
         return (
             <React.Fragment>
                 <Banner/>
-                <div className='contact-form-wraper'>
-                    <div className='container new-container'>
-                        <h3>Schedule an Appointment at {this.state.clinic.name}</h3>
-                        <div>
-                            <div className='col-lg-6 col-md-6 col-12 date-field'>
-                                <label>Date: </label>
-                                <DatePicker
-                                    selected={ this.state.dateSelected }
-                                    onChange={ this.dateChange }
-                                    name='date'
-                                    dateFormat='MM/dd/yyyy'
-                                    minDate={tomorrow}
-                                />
-                            </div>
-
-                            {this.state.dateSelected && 
-                                <div className='col-lg-6 col-md-6 col-12'>
-                                <label>Time: </label>
-                                <select 
-                                    value={this.state.timeSelected} 
-                                    onChange={this.timeChange}
-                                >
-                                    {this.state.availableTimeList.map((time) => 
-                                        (<option value={time}>{time}</option>))
-                                    }
-                                </select>
+                {this.state.clinic && 
+                    <div className='contact-form-wraper'>
+                        <div className='container new-container'>
+                            <h3>Edit Appointment at {this.state.clinic.name}</h3>
+                            <div>
+                                <div className='col-lg-6 col-md-6 col-12 date-field'>
+                                    <label>Date: </label>
+                                    <DatePicker
+                                        selected={ this.state.dateSelected }
+                                        onChange={ this.dateChange }
+                                        name='date'
+                                        dateFormat='MM/dd/yyyy'
+                                        minDate={tomorrow}
+                                    />
                                 </div>
-                            }                            
-                            
-                            <div className='col-lg-6 col-md-6 col-12'>
-                                <label>Procedure: </label>
-                                <select 
-                                    value={this.state.serviceSelected} 
-                                    onChange={this.serviceChange}
-                                >
-                                    {procedureList.map((procedure) => 
-                                        (<option value={procedure}>{procedure}</option>))
-                                    }
-                                </select>
-                            </div>
 
-                            {this.state.buttonEnabled &&
-                                <button className='contact-submit-btn' onClick={this.onSubmit}>Submit</button>
-                            }   
-                            {!this.state.buttonEnabled &&
-                                <button className='contact-submit-btn-disabled'>Submit</button>
-                            }   
+                                {this.state.dateSelected && 
+                                    <div className='col-lg-6 col-md-6 col-12'>
+                                    <label>Time: </label>
+                                    <select 
+                                        value={this.state.timeSelected} 
+                                        onChange={this.timeChange}
+                                    >
+                                        {this.state.availableTimeList.map((time) => 
+                                            (<option value={time}>{time}</option>))
+                                        }
+                                    </select>
+                                    </div>
+                                }                            
+                                
+                                <div className='col-lg-6 col-md-6 col-12'>
+                                    <label>Procedure: </label>
+                                    <select 
+                                        value={this.state.serviceSelected} 
+                                        onChange={this.serviceChange}
+                                    >
+                                        {procedureList.map((procedure) => 
+                                            (<option value={procedure}>{procedure}</option>))
+                                        }
+                                    </select>
+                                </div>
+
+                                {this.state.buttonEnabled &&
+                                    <button className='contact-submit-btn' onClick={this.onSubmit}>Submit</button>
+                                }   
+                                {!this.state.buttonEnabled &&
+                                    <button className='contact-submit-btn-disabled'>Submit</button>
+                                }   
+                            </div>
+                            {this.state.updateAppointmentSuccess && <span className='error-msg'>Appointment updated</span>}
                         </div>
-                        {this.state.createAppointmentSuccess && <span className='error-msg'>Appointment created</span>}
                     </div>
-                </div>
+                }
                 
                 {this.state.displayedAppointments.length &&
                     <div className='container new-container'> 

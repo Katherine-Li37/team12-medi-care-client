@@ -14,6 +14,7 @@ export default class FeedbackDetails extends Component {
 
             rating: null,
             comment: null,
+            ifEnableSubmitButton: false,
 
             submitSuccess: false
         }       
@@ -22,13 +23,26 @@ export default class FeedbackDetails extends Component {
     setRating = (event) => {
         this.setState({
             rating: event.toString()
-        })
+        }, this.checkIfEnableSubmitButton())
+        
     }
 
     setComment = (event) => {
         this.setState({
             comment: event.target.value
-        })
+        }, this.checkIfEnableSubmitButton())
+    }
+
+    checkIfEnableSubmitButton = () =>{
+        if (this.state.rating && this.state.comment && this.state.comment.length){
+            this.setState({
+                ifEnableSubmitButton: true
+            })
+        } else {
+            this.setState({
+                ifEnableSubmitButton: false
+            })
+        }
     }
 
     submitFeedback = () => {
@@ -102,8 +116,15 @@ export default class FeedbackDetails extends Component {
                             </div>
                             
                             <div>
-                                <button className="contact-submit-btn" onClick={this.submitFeedback}>Submit</button>
+                                {this.state.ifEnableSubmitButton &&
+                                    <button className="contact-submit-btn" onClick={this.submitFeedback}>Submit</button>
+                                }   
+                                {!this.state.ifEnableSubmitButton &&
+                                    <button className="contact-submit-btn-disabled" >Submit</button>
+                                }   
                             </div>
+
+                            
                         </div>
                     </div>
                 </div>

@@ -79,7 +79,7 @@ export default class AppointmentPage extends Component {
         let appointmentEvents =[];
         appointments.forEach((appointment)=>{
             let event = null
-            if (appointment.patientID === this.state.userLoggedIn._id){
+            if (this.state.userLoggedIn && appointment.patientID === this.state.userLoggedIn._id){
                 event = {
                     id: this.createEventId(),
                     title: appointment.patientName + ' - ' + appointment.procedure,

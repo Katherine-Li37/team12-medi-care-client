@@ -171,7 +171,7 @@ export default class AppointmentsList extends Component {
                                                             <Link to={{
                                                                 pathname: `/AppointmentWaitTime/${appointment._id}`,
                                                                 state: { 
-                                                                    appointmentID: appointment._id,
+                                                                    appointment: appointment,
                                                                     userLoggedIn: this.state.userLoggedIn
                                                                 }
                                                             }}>

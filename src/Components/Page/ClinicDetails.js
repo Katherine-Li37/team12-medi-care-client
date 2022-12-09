@@ -67,20 +67,22 @@ export default class ClinicDetails extends Component {
         let appointmentEvents =[];
         appointments.forEach((appointment)=>{
             let event = null
-            if (this.state.userLoggedIn && appointment.patientID === this.state.userLoggedIn._id){
-                event = {
-                    id: this.createEventId(),
-                    title: appointment.patientName + ' - ' + appointment.procedure,
-                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+            if(appointment.status === "active"){
+                if (this.state.userLoggedIn && appointment.patientID === this.state.userLoggedIn._id){
+                    event = {
+                        id: this.createEventId(),
+                        title: appointment.patientName + ' - ' + appointment.procedure,
+                        start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                    }
+                } else {
+                    event = {
+                        id: this.createEventId(),
+                        title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
+                        start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                    }
                 }
-            } else {
-                event = {
-                    id: this.createEventId(),
-                    title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
-                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
-                }
+                appointmentEvents.push(event);
             }
-            appointmentEvents.push(event);
         });
         this.setState({
             displayedAppointments: appointmentEvents

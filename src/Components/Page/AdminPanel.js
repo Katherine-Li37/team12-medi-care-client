@@ -115,12 +115,14 @@ export default class AdminPanel extends Component {
     displayAppointments=(appointments)=>{
         let appointmentEvents =[];
         appointments.forEach((appointment)=>{
-            let event = {
-                id: this.createEventId(),
-                title: appointment.patientName + ' - ' + appointment.procedure,
-                start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+            if(appointment.status === "active"){
+                let event = {
+                    id: this.createEventId(),
+                    title: appointment.patientName + ' - ' + appointment.procedure,
+                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                }
+                appointmentEvents.push(event);
             }
-            appointmentEvents.push(event);
         });
         this.setState({
             displayedAppointments: appointmentEvents
@@ -151,7 +153,8 @@ export default class AdminPanel extends Component {
 
     dateChange=(date)=> {
         this.setState({
-          dateSelected: date
+          dateSelected: date,
+          availableTimeList: []
         }, this.checkIfEnableButton());
         this.loadTimeSlots(date);
     }
@@ -184,7 +187,7 @@ export default class AdminPanel extends Component {
     filterOutExistedAppointment = (date, timeSlotArray) => {
         let existedAppointmentTime = [];
         this.state.existedAppointments.forEach((appointment)=>{
-            if(date.getTime() === new Date(appointment.date).getTime()){
+            if(appointment.status === "active" && date.getTime() === new Date(appointment.date).getTime()){
                 existedAppointmentTime.push(appointment.time);
             }
         })

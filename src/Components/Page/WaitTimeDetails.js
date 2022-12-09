@@ -66,7 +66,7 @@ export default class WaitTimeDetails extends Component {
         appointments.forEach((appointment)=>{
             let appointmentAt = new Date(new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time)
             let diff = (appointmentAt.getTime() - currentAt.getTime()) / 60000; // in minutes
-            if (diff < 120 && diff >= 0 && appointment.patientID !== this.state.userLoggedIn._id) { // get appointment count within next 2 hour
+            if (appointment.status === "active" && diff < 120 && diff >= 0 && appointment.patientID !== this.state.userLoggedIn._id) { // get appointment count within next 2 hour
                 waitCount++
             }
         })

@@ -30,9 +30,9 @@ export default class EditAppointment extends Component {
             // confirm logged-in
             userLoggedIn: this.props.location.state.userLoggedIn,
             appointmentID: this.props.location.state.appointment._id,
-
             appointment: null,
             clinic: null,
+
             hours: null,
             existedAppointments: [],
             displayedAppointments: [],
@@ -47,7 +47,6 @@ export default class EditAppointment extends Component {
             weekendsVisible: true,
             currentEvents: []
         };
-        
     }
 
     async componentDidMount() {
@@ -84,6 +83,7 @@ export default class EditAppointment extends Component {
         .then((data) => {
             this.setState({ existedAppointments: data });
             this.displayAppointments(data);
+            this.loadTimeSlots(new Date(this.state.appointment.date));
         })
         .catch(console.log)
     }
@@ -98,7 +98,7 @@ export default class EditAppointment extends Component {
             }
         });
         this.state.hours=dateList
-        this.loadTimeSlots(new Date(this.state.appointment.date));
+        
     }
     
     createEventId = () => {
@@ -108,21 +108,23 @@ export default class EditAppointment extends Component {
     displayAppointments=(appointments)=>{
         let appointmentEvents =[];
         appointments.forEach((appointment)=>{
-            let event = null
-            if (appointment.patientID === this.state.userLoggedIn._id){
-                event = {
-                    id: this.createEventId(),
-                    title: appointment.patientName + ' - ' + appointment.procedure,
-                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+            if(appointment.status === "active"){
+                let event = null
+                if (appointment.patientID === this.state.userLoggedIn._id){
+                    event = {
+                        id: this.createEventId(),
+                        title: appointment.patientName + ' - ' + appointment.procedure,
+                        start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                    }
+                } else {
+                    event = {
+                        id: this.createEventId(),
+                        title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
+                        start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                    }
                 }
-            } else {
-                event = {
-                    id: this.createEventId(),
-                    title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
-                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
-                }
+                appointmentEvents.push(event);
             }
-            appointmentEvents.push(event);
         });
         this.setState({
             displayedAppointments: appointmentEvents
@@ -137,7 +139,8 @@ export default class EditAppointment extends Component {
 
     dateChange=(date)=> {
         this.setState({
-          dateSelected: date
+          dateSelected: date,
+          availableTimeList: []
         }, this.checkIfEnableButton());
         this.loadTimeSlots(date);
     }
@@ -169,8 +172,10 @@ export default class EditAppointment extends Component {
     filterOutExistedAppointment = (date, timeSlotArray) => {
         let existedAppointmentTime = [];
         this.state.existedAppointments.forEach((appointment)=>{
-            if(date.getTime() === new Date(appointment.date).getTime()){
-                existedAppointmentTime.push(appointment.time);
+            if(appointment.status === "active" && date.getTime() === new Date(appointment.date).getTime()){
+                if (appointment.time !== this.state.appointment.time){
+                    existedAppointmentTime.push(appointment.time);
+                }
             }
         })
         const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));

@@ -79,20 +79,22 @@ export default class AppointmentPage extends Component {
         let appointmentEvents =[];
         appointments.forEach((appointment)=>{
             let event = null
-            if (this.state.userLoggedIn && appointment.patientID === this.state.userLoggedIn._id){
-                event = {
-                    id: this.createEventId(),
-                    title: appointment.patientName + ' - ' + appointment.procedure,
-                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+            if(appointment.status === "active"){
+                if (this.state.userLoggedIn && appointment.patientID === this.state.userLoggedIn._id){
+                    event = {
+                        id: this.createEventId(),
+                        title: appointment.patientName + ' - ' + appointment.procedure,
+                        start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                    }
+                } else {
+                    event = {
+                        id: this.createEventId(),
+                        title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
+                        start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
+                    }
                 }
-            } else {
-                event = {
-                    id: this.createEventId(),
-                    title: "Booked", // appointment.patientName + ' - ' + appointment.procedure,
-                    start: new Date(appointment.date).toISOString().replace(/T.*$/, '') + 'T' + appointment.time // YYYY-MM-DD
-                }
+                appointmentEvents.push(event);
             }
-            appointmentEvents.push(event);
         });
         this.setState({
             displayedAppointments: appointmentEvents
@@ -107,7 +109,8 @@ export default class AppointmentPage extends Component {
 
     dateChange=(date)=> {
         this.setState({
-          dateSelected: date
+          dateSelected: date,
+          availableTimeList: []
         }, this.checkIfEnableButton());
         this.loadTimeSlots(date);
     }
@@ -129,7 +132,6 @@ export default class AppointmentPage extends Component {
             let timeSlotArray=['Select Time'];
             let timeSlot = startTime;
             while (timeSlot.getTime()< endTime.getTime()){
-        
                 timeSlotArray.push(timeSlot.toLocaleTimeString('it-IT'));
                 timeSlot.setHours(timeSlot.getHours(), timeSlot.getMinutes()+30);
             }
@@ -140,7 +142,7 @@ export default class AppointmentPage extends Component {
     filterOutExistedAppointment = (date, timeSlotArray) => {
         let existedAppointmentTime = [];
         this.state.existedAppointments.forEach((appointment)=>{
-            if(date.getTime() === new Date(appointment.date).getTime()){
+            if(appointment.status === "active" && date.getTime() === new Date(appointment.date).getTime()){
                 existedAppointmentTime.push(appointment.time);
             }
         })

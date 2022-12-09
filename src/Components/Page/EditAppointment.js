@@ -173,13 +173,11 @@ export default class EditAppointment extends Component {
         let existedAppointmentTime = [];
         this.state.existedAppointments.forEach((appointment)=>{
             if(appointment.status === "active" && date.getTime() === new Date(appointment.date).getTime()){
-                existedAppointmentTime.push(appointment.time);
+                if (appointment.time !== this.state.appointment.time){
+                    existedAppointmentTime.push(appointment.time);
+                }
             }
         })
-        var index = existedAppointmentTime.indexOf(this.state.appointment.time);
-        if (index !== -1) {
-            existedAppointmentTime.splice(index, 1);
-        }
         const filteredArray = timeSlotArray.filter(value => !existedAppointmentTime.includes(value));
         this.setState({
             availableTimeList: filteredArray,
